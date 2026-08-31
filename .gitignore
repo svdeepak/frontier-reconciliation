@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 results/*.json
+
+# Mock/dev run artifacts. Real solution outputs and reports are committed
+# deliberately, alongside their results JSON, when a real provider run happens.
+outputs/solution/
+reports/
