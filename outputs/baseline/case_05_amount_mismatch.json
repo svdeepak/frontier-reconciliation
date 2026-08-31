@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 447.66,
+      "amount_b": 460.06,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 12.4,
+      "evidence": "A1011 gross 447.66 vs B5011 gross 460.06; fees match at 4.48; net differs 443.18 vs 455.58",
+      "suggested_action": "Verify which gross amount is correct; investigate source of 12.40 discrepancy"
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 549.76,
+      "amount_b": 546.01,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 3.75,
+      "evidence": "A1012 gross 549.76 vs B5012 gross 546.01; fees match at 5.50; net differs 544.26 vs 540.51",
+      "suggested_action": "Confirm correct gross amount with source system; adjust as appropriate"
+    }
+  ],
+  "case_id": "case_05_amount_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4o",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

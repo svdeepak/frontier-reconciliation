@@ -1,0 +1,73 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1337.8,
+      "amount_b": 1336.94,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "COMPOUND",
+      "component_causes": [
+        "FEE_MISMATCH",
+        "AMOUNT_MISMATCH"
+      ],
+      "confidence": "HIGH",
+      "difference": 0.86,
+      "evidence": "A1011 and B5011 both reference rmt-70001 with gross 1340.30 USD and fx_rate 1.0857/EUR 1234.50. Fee: A1011 records 2.50 vs B5011 records 3.35 (difference 0.85). Net: A1011 records 1337.80 vs B5011 records 1336.94 (difference 0.86). Both the fee and net amounts differ.",
+      "suggested_action": "Investigate fee discrepancy of 0.85 on transaction rmt-70001 and adjust net accordingly."
+    }
+  ],
+  "case_id": "case_12_compound",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

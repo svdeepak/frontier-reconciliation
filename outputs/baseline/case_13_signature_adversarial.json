@@ -1,0 +1,109 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1340.3,
+      "amount_b": 1340.29,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "COMPOUND",
+      "component_causes": [
+        "AMOUNT_MISMATCH",
+        "FEE_MISMATCH"
+      ],
+      "confidence": "HIGH",
+      "difference": 0.61,
+      "evidence": "A1011 vs B5011 both reference RMT-70001 dated 2026-08-11 USD payout with fx EUR 1234.50 @ 1.0857. Gross: A1011=1340.30 vs B5011=1340.29 (diff=0.01). Fee: A1011=2.50 vs B5011=3.10 (diff=0.60). Net: A1011=1337.80 vs B5011=1337.19 (diff=0.61, sum of gross+fee mismatches).",
+      "suggested_action": "Investigate fee discrepancy of 0.60 in B5011; verify gross rounding on fx conversion."
+    },
+    {
+      "a_row_ids": [
+        "A1013"
+      ],
+      "amount_a": 177.5,
+      "amount_b": 0.0,
+      "b_row_ids": [],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 177.5,
+      "evidence": "A1013 PAY-70090 dated 2026-08-14 is a payout batch item in USD with gross=177.50, fee=2.50, net=175.00. No corresponding row in Source B.",
+      "suggested_action": "Verify if PAY-70090 was transmitted to partner; check for transmission failure or delayed posting."
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": 0.0,
+      "amount_b": 177.51,
+      "b_row_ids": [
+        "B5012D"
+      ],
+      "break_id": "P-003",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "B5012D (PB/INV-70055, 2026-08-13) is a second posting of INV-70055 in Source B with identical gross=177.51, fee=1.90, net=175.61 to B5012 (2026-08-12). Source A contains only one entry for INV-70055 (A1012).",
+      "suggested_action": "Remove duplicate B5012D from partner statement or confirm if second posting is a legitimate correction."
+    }
+  ],
+  "case_id": "case_13_signature_adversarial",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1011",
+      "b_row_id": "B5011"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "reconciliation-engine",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}

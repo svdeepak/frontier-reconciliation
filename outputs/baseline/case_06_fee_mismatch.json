@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 5.55,
+      "amount_b": 6.15,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.6,
+      "evidence": "Reference PAY-95086 matches on gross 554.98 but fee differs: A1011=5.55 vs B5011=6.15 (difference 0.60). Net: A1011=549.43 vs B5011=548.83 (difference 0.60).",
+      "suggested_action": "Investigate fee discrepancy of 0.60 for PAY-95086; confirm correct fee rate with partner."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 6.63,
+      "amount_b": 7.88,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 1.25,
+      "evidence": "Reference RMT-39198 matches on gross 662.58 but fee differs: A1012=6.63 vs B5012=7.88 (difference 1.25). Net: A1012=655.95 vs B5012=654.70 (difference 1.25).",
+      "suggested_action": "Investigate fee discrepancy of 1.25 for RMT-39198; confirm correct fee rate with partner."
+    }
+  ],
+  "case_id": "case_06_fee_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4o",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

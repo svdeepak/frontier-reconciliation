@@ -1,0 +1,106 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 175.61,
+      "b_row_ids": [
+        "B5012",
+        "B5012D"
+      ],
+      "break_id": "P-001",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 175.61,
+      "evidence": "B rows B5012/B5012D share reference 'inv 70055', currency USD, gross 177.51 and fee 1.90: the same economic transaction booked 2 times, inflating B by net 175.61.",
+      "suggested_action": "Void the duplicate booking and reverse its effect on the affected source's totals."
+    },
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1337.8,
+      "amount_b": 1337.19,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-002",
+      "break_type": "COMPOUND",
+      "component_causes": [
+        "FEE_MISMATCH",
+        "FX_DIFFERENCE"
+      ],
+      "confidence": "HIGH",
+      "difference": 0.61,
+      "evidence": "Rows A1011/B5011: gross A 1340.30 vs B 1340.29 (delta 0.01); fee A 2.50 vs B 3.10 (delta -0.60); same EUR 1234.50 @ 1.0857: A 1340.30 vs B 1340.29 \u2014 rounding-mode divergence. Net A 1337.80 vs B 1337.19 (delta 0.61).",
+      "suggested_action": "Resolve each component cause separately; the net difference reflects more than one issue."
+    },
+    {
+      "a_row_ids": [
+        "A1013"
+      ],
+      "amount_a": 175.0,
+      "amount_b": null,
+      "b_row_ids": [],
+      "break_id": "P-003",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 175.0,
+      "evidence": "A row A1013 (ref 'PAY-70090', USD gross 177.50, net 175.00, dated 2026-08-14) has no counterpart in B after reference, amount and date matching.",
+      "suggested_action": "Chase the partner for the missing settlement line; withhold reconciliation sign-off until it appears or is written off."
+    }
+  ],
+  "case_id": "case_13_signature_adversarial",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": 0.0,
+      "amount_b": 589.77,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "MISSING_IN_A",
+      "component_causes": null,
+      "confidence": "HIGH",
+      "difference": 589.77,
+      "evidence": "B5011 (rmt-89015, BATCH ITEM, INR) with gross 589.77, fee 5.90, net 583.87 has no corresponding entry in Source A",
+      "suggested_action": "Add missing transaction rmt-89015 to internal ledger or investigate if this is a valid unrecorded transaction"
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": 0.0,
+      "amount_b": 527.9,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_A",
+      "component_causes": null,
+      "confidence": "HIGH",
+      "difference": 527.9,
+      "evidence": "B5012 (INV 11385, SETTLEMENT, GBP) with gross 527.90, fee 5.28, net 522.62 has no corresponding entry in Source A",
+      "suggested_action": "Add missing transaction INV 11385 to internal ledger or investigate if this is a valid unrecorded transaction"
+    }
+  ],
+  "case_id": "case_04_missing_in_a",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "reconciliation-v1",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}

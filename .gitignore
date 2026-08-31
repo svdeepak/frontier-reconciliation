@@ -2,9 +2,16 @@
 __pycache__/
 *.pyc
 .pytest_cache/
-results/*.json
 
-# Mock/dev run artifacts. Real solution outputs and reports are committed
-# deliberately, alongside their results JSON, when a real provider run happens.
-outputs/solution/
+# Generated XLSX exception reports. Reproducible at any time with `make report`
+# from the committed outputs/solution/, so not committed by default. Revisit if
+# the competition brief requires the workbooks as submitted artifacts.
 reports/
+
+# NOT ignored, deliberately — this is the primary experiment's evidence:
+#   outputs/baseline/   real one-prompt control run (frozen; never re-tuned)
+#   outputs/solution/   real agent-v1 run
+#   results/*.json      scored metrics + comparison, provenance from _meta.json
+# The earlier rules here excluded these when they held MockProvider artifacts.
+# They now hold the real OpenRouter run (minimax/minimax-m2.7) and are the
+# evidence behind every metric in README.md, so they are tracked.

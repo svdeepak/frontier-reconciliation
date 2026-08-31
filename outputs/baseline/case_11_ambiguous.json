@@ -1,0 +1,63 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1009",
+        "A1010"
+      ],
+      "amount_a": 336.82,
+      "amount_b": 336.82,
+      "b_row_ids": [
+        "B5009",
+        "B5010"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMBIGUOUS",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1009 (INV-21386) and A1010 (INV-21386X) are distinct rows in Source A but both carry identical gross=336.82, fee=3.37, net=333.45. In Source B, B5009 (REF ILLEGIBLE) and B5010 (REF MISSING) also share identical amounts. Reference fields on B-side are unreadable/missing, preventing unambiguous 1-to-1 pairing; each A row could theoretically match either B row.",
+      "suggested_action": "Investigate Source A records INV-21386 vs INV-21386X to determine if they are duplicate entries or separate transactions. Cross-check with originating transaction logs or counterparty data to disambiguate B5009 and B5010, or request legible references from partner."
+    }
+  ],
+  "case_id": "case_11_ambiguous",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "reconciliation-v1",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}

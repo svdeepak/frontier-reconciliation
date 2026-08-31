@@ -1,0 +1,81 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 631.9,
+      "amount_b": 0.0,
+      "b_row_ids": [],
+      "break_id": "P-001",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 631.9,
+      "evidence": "A1011 (RMT-56249, Remittance payout, AED) gross=631.90, fee=6.32, net=625.58 has no corresponding entry in Source B. Reference RMT-56249 not found in B5001-B5010.",
+      "suggested_action": "Locate transaction RMT-56249 in partner system or confirm if it was withheld/not exported."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 971.71,
+      "amount_b": 0.0,
+      "b_row_ids": [],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 971.71,
+      "evidence": "A1012 (RMT-56249, Merchant settlement, AED) gross=971.71, fee=9.72, net=961.99 has no corresponding entry in Source B. Reference RMT-56249 not found in B5001-B5010.",
+      "suggested_action": "Locate transaction RMT-56249 in partner system or confirm if it was withheld/not exported."
+    }
+  ],
+  "case_id": "case_03_missing_in_b",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4o",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

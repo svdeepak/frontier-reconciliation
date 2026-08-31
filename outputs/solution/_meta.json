@@ -1,0 +1,310 @@
+{
+  "cases": [
+    {
+      "case_id": "case_01_clean_small",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 0,
+      "n_candidates": 0,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_02_clean_messy",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 0,
+      "n_candidates": 0,
+      "n_pairs": 16,
+      "n_verifier_corrections": 0,
+      "rows_a": 16,
+      "rows_b": 16,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_03_missing_in_b",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 10,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 10,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_04_missing_in_a",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 10,
+      "n_verifier_corrections": 0,
+      "rows_a": 10,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_05_amount_mismatch",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_06_fee_mismatch",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_07_amount_and_fee",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_08_fx_difference",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 10,
+      "n_verifier_corrections": 0,
+      "rows_a": 10,
+      "rows_b": 10,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_09_rounding",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_10_duplicates",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 14,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_11_ambiguous",
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 1,
+        "seconds": 13.88,
+        "usage": {
+          "completion_tokens": 643,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 491
+          },
+          "cost": 0.00088047,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.00069444,
+            "upstream_inference_cost": 0.00088047,
+            "upstream_inference_prompt_cost": 0.00018603
+          },
+          "is_byok": false,
+          "prompt_tokens": 689,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 1332
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_confidence": true,
+          "accepted_type": true,
+          "break_id": "C-001",
+          "deterministic_type": "AMBIGUOUS",
+          "llm_type": "AMBIGUOUS"
+        }
+      ],
+      "n_breaks_emitted": 1,
+      "n_candidates": 1,
+      "n_pairs": 8,
+      "n_verifier_corrections": 0,
+      "rows_a": 10,
+      "rows_b": 10,
+      "seconds": 13.88,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_12_compound",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 1,
+      "n_candidates": 1,
+      "n_pairs": 11,
+      "n_verifier_corrections": 0,
+      "rows_a": 11,
+      "rows_b": 11,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_13_signature_adversarial",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 3,
+      "n_candidates": 3,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 13,
+      "rows_b": 13,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_14_aggregate_trap",
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    }
+  ],
+  "model": "minimax/minimax-m2.7",
+  "n_llm_calls": 1,
+  "provider": "openrouter",
+  "system": "agent-v1",
+  "total_seconds": 13.9,
+  "total_tokens": {
+    "completion": 643,
+    "prompt": 689
+  },
+  "total_verifier_corrections": 0
+}

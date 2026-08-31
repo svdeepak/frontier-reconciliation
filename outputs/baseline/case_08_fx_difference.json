@@ -1,0 +1,77 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1010"
+      ],
+      "amount_a": 4742.59,
+      "amount_b": 4742.58,
+      "b_row_ids": [
+        "B5010"
+      ],
+      "break_id": "P-001",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "TXN-39340: A1010 gross_amount 4742.59 vs B5010 gross_amount 4742.58. FX rate (1.0679) and foreign_amount (4441.04 INR) are identical. Difference of 0.01 is a rounding artifact in gross and net amounts.",
+      "suggested_action": "Accept as matching - this is a 1-cent rounding difference common when two systems round converted amounts independently."
+    },
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 757.78,
+      "amount_b": 757.77,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-002",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "TXN-89477: A1011 gross_amount 757.78 vs B5011 gross_amount 757.77. FX rate (0.9408) and foreign_amount (805.46 INR) are identical. Difference of 0.01 is a rounding artifact in gross and net amounts.",
+      "suggested_action": "Accept as matching - this is a 1-cent rounding difference common when two systems round converted amounts independently."
+    }
+  ],
+  "case_id": "case_08_fx_difference",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "reconciliation-engine",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}

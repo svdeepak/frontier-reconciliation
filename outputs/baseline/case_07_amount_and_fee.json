@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 220.99,
+      "amount_b": 225.99,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 5.0,
+      "evidence": "A1011 (TXN-27904) gross_amount=220.99 vs B5011 (pay-27904) gross_amount=225.99; net amounts also differ: 218.78 vs 223.78; fee_amounts match at 2.21, so the full 5.00 difference is attributable to gross_amount",
+      "suggested_action": "Investigate source of 5.00 gross discrepancy; verify whether B5011 has a data entry error or an extra amount recorded"
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 8.35,
+      "amount_b": 7.95,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.4,
+      "evidence": "A1012 (TXN-42819) fee_amount=8.35 vs B5012 (PB/TXN-42819) fee_amount=7.95; gross_amounts match at 835.32; net amounts differ by 0.40 (826.97 vs 827.37) matching the fee difference exactly",
+      "suggested_action": "Verify correct fee for TXN-42819; determine whether fee should be 8.35 (as in ledger) or 7.95 (as in partner statement); reconcile to correct value"
+    }
+  ],
+  "case_id": "case_07_amount_and_fee",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "o4-mini",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 353.57,
+      "amount_b": 353.56,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1011 (TXN-64221) gross=353.57 vs B5011 (PB/TXN-64221) gross=353.56; fee amounts match at 3.54; net differs by 0.01 (350.03 vs 350.02) due to gross rounding",
+      "suggested_action": "Accept as rounding tolerance; confirm with partner if net settlement disputed"
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 297.41,
+      "amount_b": 297.4,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1012 (INV-15811) gross=297.41 vs B5012 (INV 15811) gross=297.40; fee amounts match at 2.97; net differs by 0.01 (294.44 vs 294.43) due to gross rounding",
+      "suggested_action": "Accept as rounding tolerance; confirm with partner if net settlement disputed"
+    }
+  ],
+  "case_id": "case_09_rounding",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "claude-3-5-sonnet-20241022",
+    "name": "baseline-v1",
+    "provider": "anthropic"
+  }
+}

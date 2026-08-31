@@ -1,0 +1,95 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 354.46,
+      "amount_b": 354.46,
+      "b_row_ids": [
+        "B5011",
+        "B5011D"
+      ],
+      "break_id": "P-001",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1011 (PAY-46129, EUR 354.46 net) corresponds to B5011 (PAY 46129, EUR 354.46 net); B5011D is an exact duplicate of B5011 with the same reference, date, currency, and net amount with no counterpart in Source A.",
+      "suggested_action": "Flag B5011D as duplicate; verify PAY-46129 was only settled once on the partner side."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 617.84,
+      "amount_b": 617.84,
+      "b_row_ids": [
+        "B5012",
+        "B5012D"
+      ],
+      "break_id": "P-002",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1012 (PAY-27777, USD 617.84 net) corresponds to B5012 (PAY-27777, USD 617.84 net); B5012D is an exact duplicate of B5012 with the same reference, date, currency, and net amount with no counterpart in Source A.",
+      "suggested_action": "Flag B5012D as duplicate; verify PAY-27777 was only settled once on the partner side."
+    }
+  ],
+  "case_id": "case_10_duplicates",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1011",
+      "b_row_id": "B5011"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "recon-v1",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}
