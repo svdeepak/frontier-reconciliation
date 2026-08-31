@@ -1,6 +1,7 @@
 # Demo script — "The books balance. The reconciliation is still wrong."
 
-Target 3–5 minutes. Every number below is measured and traceable to
+Target 5 minutes (beats below run to ~5:00; trim the optional verifier shot at
+2:05–3:05 first if over). Every number below is measured and traceable to
 `results/*.json` or `outputs/*/_meta.json` — no figure is estimated. Do **not**
 demo a MockProvider run: F1 = 1.0 from mock is not a result.
 
@@ -120,7 +121,52 @@ totals highlighted.
 > aggregate totals tie out — YES. Row-level exceptions — three. Aggregate check
 > misleading — yes."
 
-## 3:50–4:20 — Close
+## 3:50–4:25 — Held out, and the experiment we threw away
+
+**This is the strongest 30 seconds. Do not cut it.**
+
+**On screen:** the seed-42 vs seed-777 table.
+
+| | Baseline 42 | Baseline 777 | agent-v1 42 | agent-v1 777 |
+|---|---|---|---|---|
+| F1 | 0.8182 | **0.72** | 1.0 | **1.0** |
+| Precision | 0.8571 | **0.6667** | 1.0 | 1.0 |
+| FP | 3 | **9** | 0 | 0 |
+
+> "Same generator, new seed, values the system had never seen. The agent held at
+> 1.0. The one-prompt baseline fell to 0.72 — precision only, false positives
+> tripled from 3 to 9. Same prompt, same model, different numbers.
+>
+> To be precise about what that proves: seed-42 and seed-777 share the same case
+> structure, so this shows robustness to *value* variation. It does not show
+> robustness to new break structures or to real partner data. I'm not claiming
+> general accuracy from fourteen cases."
+
+**On screen:** the ablation table.
+
+> "And the experiment I threw away. I forced cause classification through the
+> LLM instead of the arithmetic — everything else identical, same verifier
+> downstream. Result: **fifteen times the cost for worse accuracy.** F1 dropped
+> to 0.9778, cause accuracy to 0.8636.
+>
+> **And verifier corrections went from zero to four.** That's the number I care
+> about. Three times it silently fixed amounts the wrong label would have
+> corrupted. Once it dropped a break entirely — because the model returned its
+> component causes as a *sentence* instead of an enum value. Its prose was
+> right about the rounding mode. The field was unusable. Rejected, and it's in
+> the repo as a rejected experiment, not quietly deleted."
+
+## 4:25–4:45 — How it got here
+
+**On screen:** `CHANGELOG.md`, scrolled.
+
+> "Every one of those decisions is in the changelog with what was measured and
+> whether it was kept — the contract frozen before any implementation, the
+> baseline never retuned after I saw its score, the provenance bug where the
+> model confabulated eight different model names for itself, and this rejected
+> ablation. Written as the work happened, not reconstructed afterwards."
+
+## 4:45–5:00 — Close
 
 > "The finding I didn't expect: we took the language model out of 93% of the
 > work and accuracy went *up*. The model earns its place at the ambiguous
@@ -144,7 +190,10 @@ totals highlighted.
 | Ambiguous case references | `data/cases/case_11_ambiguous/source_b.csv` |
 | Verifier drop/correct (optional) | `tests/test_agent_integration.py` regression tests |
 | Comparison table | `results/comparison.json`, `docs/PER_CASE_COMPARISON.md` |
-| XLSX Summary sheet | `reports/case_13_signature_adversarial.xlsx` |
+| XLSX Summary sheet | `docs/sample_exception_report_case13.xlsx` |
+| Holdout table | `docs/HOLDOUT_SEED777.md`, README §6.5 |
+| Ablation table + 4 corrections | `docs/ABLATION_LLM_CAUSE.md`, `outputs/ablation-llm-cause/_meta.json` |
+| Changelog scroll | `CHANGELOG.md` |
 
 ## Things to not say
 
@@ -153,5 +202,8 @@ totals highlighted.
 - Don't present runtime/cost as an LLM-vs-LLM comparison.
 - Don't show a MockProvider run or quote a mock F1.
 - Don't claim generalization from 14 cases.
+- Don't call the holdout an independent dataset — it shares the generator.
+- Don't skip the ablation because it's a negative result; it's the best evidence
+  the design decision was load-bearing.
 - Don't call the baseline bad: it scored 0.8182 with zero clean-case false
   positives and no hallucinated row IDs. The story is *where* it failed.

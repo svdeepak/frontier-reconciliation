@@ -5,6 +5,10 @@ partner statement (Source B), detects row-level breaks, classifies their cause,
 and produces an evidence-backed exception report (XLSX) for human review.
 Built for the micro1 Frontier Engineering Challenge 2026.
 
+**Demo video:** _<!-- VIDEO_LINK: replace this line with the unlisted URL once recorded -->_
+**Sample deliverable:** [docs/sample_exception_report_case13.xlsx](docs/sample_exception_report_case13.xlsx)
+— the exception report for the signature adversarial case, generated from the real agent-v1 run.
+
 **User:** finance/operations analysts reconciling transactions between two sources.
 **Core hypothesis:** aggregate correctness != row-level correctness.
 **Evaluation contract:** [docs/EVALUATION.md](docs/EVALUATION.md) — frozen before
@@ -250,11 +254,11 @@ make report     # M6: XLSX exception reports -> reports/<case_id>.xlsx
 make test       # full test suite
 ```
 
-**Sample artifact.** `reports/case_13_signature_adversarial.xlsx` is committed as
-the sample deliverable — generated from the real agent-v1 seed-42 run, three
-sheets (Summary / Exceptions / Evidence). The other 13 workbooks are not
-committed; `make report` regenerates all 14 from the committed
-`outputs/solution/`. Step-by-step setup: **[REPRODUCTION.md](REPRODUCTION.md)**.
+**Sample artifact.** [`docs/sample_exception_report_case13.xlsx`](docs/sample_exception_report_case13.xlsx)
+is committed as the sample deliverable — the `case_13_signature_adversarial`
+workbook, generated from the real agent-v1 seed-42 run, three sheets
+(Summary / Exceptions / Evidence). `reports/` itself is gitignored; `make report`
+regenerates all 14 workbooks there from the committed `outputs/solution/`. Step-by-step setup: **[REPRODUCTION.md](REPRODUCTION.md)**.
 
 `make data` is idempotent: regeneration from seed 42 reproduces the committed
 datasets byte-for-byte, so the committed ground truth can be independently

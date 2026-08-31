@@ -185,10 +185,11 @@ re-runs:
 | Baseline raw outputs | `outputs/baseline/` | path B `make baseline` (new LLM run) |
 | agent-v1 raw outputs | `outputs/solution/` | path B `make solve` (new LLM run) |
 | Scored metrics | `results/*.json` | path A evaluator re-score (no cost) |
-| Sample XLSX | `reports/case_13_signature_adversarial.xlsx` | `make report` |
+| Sample XLSX | `docs/sample_exception_report_case13.xlsx` | `make report` (writes all 14 to `reports/`) |
 
-The 13 other workbooks are not committed; `make report` regenerates all 14 from
-the committed `outputs/solution/`.
+`reports/` is gitignored; `make report` regenerates all 14 workbooks there from
+the committed `outputs/solution/`. The committed sample is the `case_13` one,
+copied to `docs/` under an obvious name.
 
 ## D. Held-out experiment (seed 777) — already complete
 
