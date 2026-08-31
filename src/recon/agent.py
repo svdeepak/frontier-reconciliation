@@ -417,3 +417,370 @@ def build_candidates(m: MatchResult) -> list[Candidate]:
 
     out.sort(key=lambda c: (c.a_ids, c.b_ids, c.break_type))
     return out
+
+
+# ---------------------------------------------------------------- stage 4
+
+LLM_SYSTEM_PROMPT = """You are a payments reconciliation analyst. You classify and \
+explain reconciliation exceptions. You NEVER perform arithmetic: every amount and \
+difference has already been computed from the source rows and is authoritative.
+
+You will receive candidate exceptions that deterministic matching could not settle, \
+each with its computed amounts and the source rows involved.
+
+For each candidate, choose the most defensible interpretation and return JSON only:
+{"decisions": [{"break_id": "<the id given>", "break_type": "<one of the allowed types>",
+  "component_causes": ["..."], "confidence": "HIGH"|"MEDIUM"|"LOW",
+  "rationale": "<one sentence, business-meaningful>",
+  "suggested_action": "<concrete next step for an operations analyst>"}]}
+
+Allowed break_type values: MISSING_IN_A, MISSING_IN_B, AMOUNT_MISMATCH, FEE_MISMATCH, \
+FX_DIFFERENCE, ROUNDING_DIFFERENCE, DUPLICATE, AMBIGUOUS, COMPOUND. Use \
+component_causes only for COMPOUND. Cite ONLY row IDs that appear in the candidate. \
+Do not invent row IDs. Do not restate or recompute the numbers."""
+
+ALLOWED_TYPES = frozenset([
+    "MISSING_IN_A", "MISSING_IN_B", "AMOUNT_MISMATCH", "FEE_MISMATCH", "FX_DIFFERENCE",
+    "ROUNDING_DIFFERENCE", "DUPLICATE", "AMBIGUOUS", "COMPOUND",
+])
+CONFIDENCES = frozenset(["HIGH", "MEDIUM", "LOW"])
+
+
+def _candidate_brief(idx: int, c: Candidate, a_by_id: dict, b_by_id: dict) -> dict:
+    def describe(rid, src):
+        r = (a_by_id if src == "A" else b_by_id)[rid]
+        return {"row_id": r.row_id, "date": r.date, "reference": r.reference,
+                "currency": r.currency, "gross_amount": str(r.gross_amount),
+                "fee_amount": str(r.fee_amount), "net_amount": str(r.net_amount)}
+    return {
+        "break_id": f"C-{idx:03d}",
+        "deterministic_break_type": c.break_type,
+        "computed_amount_a": None if c.amount_a is None else str(c.amount_a),
+        "computed_amount_b": None if c.amount_b is None else str(c.amount_b),
+        "computed_difference": None if c.difference is None else str(c.difference),
+        "a_rows": [describe(r, "A") for r in c.a_ids],
+        "b_rows": [describe(r, "B") for r in c.b_ids],
+        "computed_evidence": c.evidence,
+    }
+
+
+def strip_fences(text: str) -> str:
+    t = text.strip()
+    if t.startswith("```"):
+        t = t.split("\n", 1)[1] if "\n" in t else t
+        if t.rstrip().endswith("```"):
+            t = t.rstrip()[:-3]
+    return t.strip()
+
+
+def llm_interpret(provider, case_id: str, candidates: list[Candidate],
+                  a_by_id: dict, b_by_id: dict) -> tuple[dict, dict]:
+    """Ask the LLM to interpret ONLY the unsettled candidates (§5 boundary).
+
+    Returns (decisions_by_break_id, call_meta). Returns empty decisions when
+    there is nothing ambiguous — a fully deterministic case makes no LLM call
+    at all. Malformed replies degrade to the deterministic result rather than
+    failing the run; nothing here is trusted for arithmetic.
+    """
+    idx_map = {f"C-{i:03d}": c for i, c in enumerate(candidates, 1) if c.needs_llm}
+    meta = {"called": False, "n_candidates": len(idx_map), "seconds": 0.0,
+            "usage": {}, "error": None}
+    if not idx_map:
+        return {}, meta
+
+    briefs = [_candidate_brief(i, c, a_by_id, b_by_id)
+              for i, c in enumerate(candidates, 1) if c.needs_llm]
+    user = (f"case_id: {case_id}\n\nCandidate exceptions requiring interpretation:\n"
+            + json.dumps(briefs, indent=2))
+    t0 = time.time()
+    meta["called"] = True
+    try:
+        reply = provider.complete(LLM_SYSTEM_PROMPT, user)
+        parsed = json.loads(strip_fences(reply))
+        decisions = {d["break_id"]: d for d in parsed.get("decisions", [])
+                     if isinstance(d, dict) and "break_id" in d}
+    except (json.JSONDecodeError, KeyError, TypeError, AttributeError) as e:
+        meta["error"] = f"{type(e).__name__}: {e}"
+        decisions = {}
+    except Exception as e:  # provider/transport failure must not abort the run
+        meta["error"] = f"{type(e).__name__}: {e}"
+        decisions = {}
+    meta["seconds"] = round(time.time() - t0, 2)
+    meta["usage"] = dict(getattr(provider, "last_usage", {}) or {})
+    return decisions, meta
+
+
+def apply_decisions(candidates: list[Candidate], decisions: dict) -> list[dict]:
+    """Merge LLM labels into candidates. Arithmetic fields are never touched.
+
+    Each accepted or rejected label is recorded so the audit trail shows what
+    the model was allowed to change.
+    """
+    applied: list[dict] = []
+    for i, c in enumerate(candidates, 1):
+        d = decisions.get(f"C-{i:03d}")
+        if not d:
+            continue
+        note = {"break_id": f"C-{i:03d}", "deterministic_type": c.break_type,
+                "llm_type": d.get("break_type"), "accepted_type": False,
+                "accepted_confidence": False}
+        t = d.get("break_type")
+        if t in ALLOWED_TYPES:
+            # The LLM may refine a cause only where code left it open.
+            if c.break_type == "AMBIGUOUS":
+                c.break_type = t
+                if t == "COMPOUND":
+                    comps = [x for x in d.get("component_causes", []) if x in ALLOWED_TYPES]
+                    c.component_causes = sorted(set(comps))
+                note["accepted_type"] = True
+        conf = d.get("confidence")
+        if conf in CONFIDENCES:
+            c.confidence = conf
+            note["accepted_confidence"] = True
+        if isinstance(d.get("rationale"), str) and d["rationale"].strip():
+            c.llm_note = d["rationale"].strip()
+        if isinstance(d.get("suggested_action"), str) and d["suggested_action"].strip():
+            c.suggested_action_override = d["suggested_action"].strip()
+        applied.append(note)
+    return applied
+
+
+# ---------------------------------------------------------------- stage 5
+
+SUGGESTED_ACTIONS = {
+    "MISSING_IN_A": "Investigate why the partner booked this transaction with no ledger entry; post to the ledger or raise with the partner.",
+    "MISSING_IN_B": "Chase the partner for the missing settlement line; withhold reconciliation sign-off until it appears or is written off.",
+    "AMOUNT_MISMATCH": "Confirm the correct gross with the partner and post an adjustment for the difference.",
+    "FEE_MISMATCH": "Verify the contracted fee schedule and recover or accrue the fee difference.",
+    "FX_DIFFERENCE": "Align rounding convention on converted amounts with the partner; book the sub-cent difference to FX variance.",
+    "ROUNDING_DIFFERENCE": "Accept within tolerance and book to the rounding variance account.",
+    "DUPLICATE": "Void the duplicate booking and reverse its effect on the affected source's totals.",
+    "AMBIGUOUS": "Obtain the partner's full reference detail to establish correspondence before clearing.",
+    "COMPOUND": "Resolve each component cause separately; the net difference reflects more than one issue.",
+}
+
+
+@dataclass
+class Verification:
+    breaks: list[dict] = field(default_factory=list)
+    corrections: list[dict] = field(default_factory=list)
+
+    @property
+    def n_corrections(self) -> int:
+        return len(self.corrections)
+
+
+def verify(candidates: list[Candidate], a_by_id: dict, b_by_id: dict) -> Verification:
+    """Deterministic verification pass — the output gate.
+
+    For every candidate:
+      * drop it if it cites a row ID absent from the source data;
+      * recompute amount_a / amount_b / difference from the source rows and
+        overwrite any value that disagrees;
+      * drop COMPOUND claims whose component set is not arithmetically
+        supported, and require a component set of at least two causes;
+      * reject break types outside the frozen taxonomy.
+
+    Every intervention is recorded in `corrections` so the run is auditable.
+    """
+    v = Verification()
+    for i, c in enumerate(candidates, 1):
+        cid = f"C-{i:03d}"
+
+        missing = ([r for r in c.a_ids if r not in a_by_id]
+                   + [r for r in c.b_ids if r not in b_by_id])
+        if missing:
+            v.corrections.append({"break_id": cid, "action": "DROPPED",
+                                  "reason": "nonexistent_row_ids",
+                                  "detail": sorted(missing)})
+            continue
+
+        if c.break_type not in ALLOWED_TYPES:
+            v.corrections.append({"break_id": cid, "action": "DROPPED",
+                                  "reason": "break_type_not_in_taxonomy",
+                                  "detail": c.break_type})
+            continue
+
+        a_rows = [a_by_id[r] for r in c.a_ids]
+        b_rows = [b_by_id[r] for r in c.b_ids]
+
+        if c.break_type == "COMPOUND":
+            comps = sorted(set(c.component_causes))
+            if len(comps) < 2 or not set(comps) <= ALLOWED_TYPES:
+                v.corrections.append({"break_id": cid, "action": "DROPPED",
+                                      "reason": "compound_component_set_unsupported",
+                                      "detail": comps})
+                continue
+            if len(a_rows) == 1 and len(b_rows) == 1:
+                supported = _supported_causes(a_rows[0], b_rows[0])
+                if set(comps) != supported:
+                    v.corrections.append({
+                        "break_id": cid, "action": "DROPPED",
+                        "reason": "compound_components_not_arithmetically_supported",
+                        "detail": {"claimed": comps, "supported": sorted(supported)}})
+                    continue
+
+        exp_a, exp_b, exp_diff = _recompute(c.break_type, a_rows, b_rows)
+        for field_name, claimed, expected in (("amount_a", c.amount_a, exp_a),
+                                              ("amount_b", c.amount_b, exp_b),
+                                              ("difference", c.difference, exp_diff)):
+            if claimed is None and expected is None:
+                continue
+            if claimed is None or expected is None or d2(claimed) != d2(expected):
+                v.corrections.append({
+                    "break_id": cid, "action": "CORRECTED_ARITHMETIC",
+                    "reason": field_name,
+                    "detail": {"claimed": None if claimed is None else str(claimed),
+                               "recomputed": None if expected is None else str(expected)}})
+        c.amount_a, c.amount_b, c.difference = exp_a, exp_b, exp_diff
+
+        action = getattr(c, "suggested_action_override", None) or SUGGESTED_ACTIONS[c.break_type]
+        evidence = c.evidence
+        if c.llm_note:
+            evidence = f"{evidence} Analyst interpretation: {c.llm_note}"
+
+        b = {
+            "break_id": f"P-{len(v.breaks) + 1:03d}",
+            "break_type": c.break_type,
+            "a_row_ids": c.a_ids,
+            "b_row_ids": c.b_ids,
+            "amount_a": None if exp_a is None else float(exp_a),
+            "amount_b": None if exp_b is None else float(exp_b),
+            "difference": None if exp_diff is None else float(exp_diff),
+            "evidence": evidence,
+            "suggested_action": action,
+            "confidence": c.confidence if c.confidence in CONFIDENCES else "MEDIUM",
+        }
+        if c.break_type == "COMPOUND":
+            b["component_causes"] = sorted(set(c.component_causes))
+        v.breaks.append(b)
+    return v
+
+
+def _supported_causes(a: Row, b: Row) -> set[str]:
+    """The cause set arithmetic actually supports for a 1:1 correspondence."""
+    causes = set()
+    if a.gross_amount != b.gross_amount:
+        if _fx_explains(a, b):
+            causes.add("FX_DIFFERENCE")
+        elif abs(a.gross_amount - b.gross_amount) <= TOLERANCE:
+            causes.add("ROUNDING_DIFFERENCE")
+        else:
+            causes.add("AMOUNT_MISMATCH")
+    if a.fee_amount != b.fee_amount:
+        causes.add("FEE_MISMATCH")
+    return causes
+
+
+def _recompute(break_type: str, a_rows: list[Row], b_rows: list[Row]):
+    """Authoritative amounts for a break, recomputed from source rows only."""
+    sa = sum((r.net_amount for r in a_rows), Decimal("0")) if a_rows else None
+    sb = sum((r.net_amount for r in b_rows), Decimal("0")) if b_rows else None
+
+    if break_type == "FEE_MISMATCH" and len(a_rows) == 1 and len(b_rows) == 1:
+        fa, fb = a_rows[0].fee_amount, b_rows[0].fee_amount
+        return fa, fb, fa - fb
+    if break_type in ("AMOUNT_MISMATCH", "FX_DIFFERENCE", "ROUNDING_DIFFERENCE") \
+            and len(a_rows) == 1 and len(b_rows) == 1:
+        ga, gb = a_rows[0].gross_amount, b_rows[0].gross_amount
+        return ga, gb, ga - gb
+    if break_type == "DUPLICATE":
+        rows = b_rows or a_rows
+        rep = rows[0]
+        # The excess booked by the duplicate copies, not the whole group.
+        excess = rep.net_amount * (len(rows) - 1)
+        if b_rows:
+            return None, rep.net_amount, excess
+        return rep.net_amount, None, excess
+    if break_type == "AMBIGUOUS":
+        return sa, sb, (sa or Decimal("0")) - (sb or Decimal("0"))
+    if break_type == "MISSING_IN_B":
+        return sa, None, sa
+    if break_type == "MISSING_IN_A":
+        return None, sb, sb
+    return sa, sb, (sa or Decimal("0")) - (sb or Decimal("0"))
+
+
+# ---------------------------------------------------------------- runner
+
+
+def solve_case(provider, data_dir: Path, case_id: str) -> tuple[dict, dict]:
+    """Run all five stages for one case. Returns (output, case_meta)."""
+    case_dir = data_dir / "cases" / case_id
+    t0 = time.time()
+
+    a_rows = normalize(case_dir / "source_a.csv")
+    b_rows = normalize(case_dir / "source_b.csv")
+    a_by_id = {r.row_id: r for r in a_rows}
+    b_by_id = {r.row_id: r for r in b_rows}
+
+    m = match_candidates(a_rows, b_rows)
+    candidates = build_candidates(m)
+    decisions, llm_meta = llm_interpret(provider, case_id, candidates, a_by_id, b_by_id)
+    applied = apply_decisions(candidates, decisions)
+    v = verify(candidates, a_by_id, b_by_id)
+
+    matched_pairs = [{"a_row_id": a.row_id, "b_row_id": b.row_id}
+                     for a, b in m.pairs
+                     if classify_pair(a, b) is None]
+    output = {
+        "schema_version": SCHEMA_VERSION,
+        "case_id": case_id,
+        "system": {"name": SYSTEM_NAME,
+                   "model": getattr(provider, "model", provider.name),
+                   "provider": provider.name},
+        "matches": sorted(matched_pairs, key=lambda x: x["a_row_id"]),
+        "breaks": v.breaks,
+    }
+    meta = {
+        "case_id": case_id,
+        "seconds": round(time.time() - t0, 2),
+        "rows_a": len(a_rows),
+        "rows_b": len(b_rows),
+        "n_pairs": len(m.pairs),
+        "n_candidates": len(candidates),
+        "n_breaks_emitted": len(v.breaks),
+        "llm": llm_meta,
+        "llm_decisions_applied": applied,
+        "verifier_corrections": v.corrections,
+        "n_verifier_corrections": v.n_corrections,
+    }
+    return output, meta
+
+
+def run(data_dir: Path, outputs_dir: Path) -> dict:
+    provider = provider_from_env()
+    outputs_dir.mkdir(parents=True, exist_ok=True)
+    manifest = json.loads((data_dir / "manifest.json").read_text())
+    meta = {"system": SYSTEM_NAME, "provider": provider.name,
+            "model": getattr(provider, "model", provider.name), "cases": []}
+    t_start = time.time()
+
+    for c in sorted(manifest["cases"], key=lambda x: x["case_id"]):
+        cid = c["case_id"]
+        output, case_meta = solve_case(provider, data_dir, cid)
+        (outputs_dir / f"{cid}.json").write_text(
+            json.dumps(output, indent=2, sort_keys=True) + "\n")
+        meta["cases"].append(case_meta)
+
+    meta["total_seconds"] = round(time.time() - t_start, 2)
+    meta["total_tokens"] = {
+        "prompt": sum(x["llm"]["usage"].get("prompt_tokens") or 0 for x in meta["cases"]),
+        "completion": sum(x["llm"]["usage"].get("completion_tokens") or 0 for x in meta["cases"]),
+    }
+    meta["n_llm_calls"] = sum(1 for x in meta["cases"] if x["llm"]["called"])
+    meta["total_verifier_corrections"] = sum(x["n_verifier_corrections"] for x in meta["cases"])
+    (outputs_dir / "_meta.json").write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n")
+    return meta
+
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--data", type=str, default="data")
+    p.add_argument("--outputs", type=str, default="outputs/solution")
+    args = p.parse_args()
+    m = run(Path(args.data), Path(args.outputs))
+    print(f"agent complete: system={m['system']} provider={m['provider']} "
+          f"cases={len(m['cases'])} llm_calls={m['n_llm_calls']} "
+          f"verifier_corrections={m['total_verifier_corrections']} "
+          f"total_seconds={m['total_seconds']}")
