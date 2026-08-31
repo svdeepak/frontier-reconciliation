@@ -1,0 +1,91 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "GT-001",
+      "break_type": "COMPOUND",
+      "component_causes": [
+        "FEE_MISMATCH",
+        "FX_DIFFERENCE"
+      ],
+      "expected_difference": 0.61,
+      "notes": "FX: 1234.50 EUR @ 1.0857 -> A HALF_UP 1340.30 vs B DOWN 1340.29 (-0.01); fee A 2.50 vs B 3.10 (+0.60); net diff 0.61."
+    },
+    {
+      "a_row_ids": [],
+      "b_row_ids": [
+        "B5012",
+        "B5012D"
+      ],
+      "break_id": "GT-002",
+      "break_type": "DUPLICATE",
+      "expected_difference": 175.61,
+      "notes": "Same economic transaction booked twice in B; inflates B totals by gross 177.51 / net 175.61."
+    },
+    {
+      "a_row_ids": [
+        "A1013"
+      ],
+      "b_row_ids": [],
+      "break_id": "GT-003",
+      "break_type": "MISSING_IN_B",
+      "expected_difference": 175.0,
+      "notes": "A row has no B counterpart; reduces B totals by gross 177.50 / net 175.00."
+    }
+  ],
+  "case_id": "case_13_signature_adversarial",
+  "description": "Signature adversarial case: compound FX+fee break (net -0.61 on B), offset exactly by a duplicate in B (gross 177.51 / net 175.61) and a missing-in-B row (gross 177.50 / net 175.00). Aggregate gross and net totals are EQUAL while ground truth contains 3 row-level breaks.",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "seed": 42013
+}

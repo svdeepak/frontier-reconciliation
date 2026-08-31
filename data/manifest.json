@@ -1,0 +1,273 @@
+{
+  "cases": [
+    {
+      "aggregate_gross_equal": true,
+      "aggregate_net_equal": true,
+      "breaks_by_type": {},
+      "case_id": "case_01_clean_small",
+      "description": "All rows match; no breaks. False-positive pressure.",
+      "n_breaks": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seed": 42001,
+      "totals": {
+        "a_gross": "5972.86",
+        "a_net": "5913.12",
+        "b_gross": "5972.86",
+        "b_net": "5913.12"
+      }
+    },
+    {
+      "aggregate_gross_equal": true,
+      "aggregate_net_equal": true,
+      "breaks_by_type": {},
+      "case_id": "case_02_clean_messy",
+      "description": "All rows match; heavy reference noise and date shifts. False-positive pressure.",
+      "n_breaks": 0,
+      "rows_a": 16,
+      "rows_b": 16,
+      "seed": 42002,
+      "totals": {
+        "a_gross": "18899.67",
+        "a_net": "18710.67",
+        "b_gross": "18899.67",
+        "b_net": "18710.67"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "MISSING_IN_B": 2
+      },
+      "case_id": "case_03_missing_in_b",
+      "description": "Two A rows absent from B.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 10,
+      "seed": 42003,
+      "totals": {
+        "a_gross": "7170.11",
+        "a_net": "7098.41",
+        "b_gross": "5566.50",
+        "b_net": "5510.84"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "MISSING_IN_A": 2
+      },
+      "case_id": "case_04_missing_in_a",
+      "description": "Two B rows absent from A.",
+      "n_breaks": 2,
+      "rows_a": 10,
+      "rows_b": 12,
+      "seed": 42004,
+      "totals": {
+        "a_gross": "5299.31",
+        "a_net": "5246.31",
+        "b_gross": "6416.98",
+        "b_net": "6352.80"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "AMOUNT_MISMATCH": 2
+      },
+      "case_id": "case_05_amount_mismatch",
+      "description": "Two amount discrepancies beyond tolerance.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seed": 42005,
+      "totals": {
+        "a_gross": "6278.64",
+        "a_net": "6215.83",
+        "b_gross": "6287.29",
+        "b_net": "6224.48"
+      }
+    },
+    {
+      "aggregate_gross_equal": true,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "FEE_MISMATCH": 2
+      },
+      "case_id": "case_06_fee_mismatch",
+      "description": "Two fee discrepancies.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seed": 42006,
+      "totals": {
+        "a_gross": "4239.77",
+        "a_net": "4197.35",
+        "b_gross": "4239.77",
+        "b_net": "4195.50"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "AMOUNT_MISMATCH": 1,
+        "FEE_MISMATCH": 1
+      },
+      "case_id": "case_07_amount_and_fee",
+      "description": "One amount and one fee discrepancy on separate rows.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seed": 42007,
+      "totals": {
+        "a_gross": "7518.58",
+        "a_net": "7443.38",
+        "b_gross": "7523.58",
+        "b_net": "7448.78"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "FX_DIFFERENCE": 2
+      },
+      "case_id": "case_08_fx_difference",
+      "description": "Two FX rounding-mode divergences (HALF_UP vs DOWN).",
+      "n_breaks": 2,
+      "rows_a": 10,
+      "rows_b": 10,
+      "seed": 42008,
+      "totals": {
+        "a_gross": "19801.69",
+        "a_net": "19603.67",
+        "b_gross": "19801.67",
+        "b_net": "19603.65"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "ROUNDING_DIFFERENCE": 2
+      },
+      "case_id": "case_09_rounding",
+      "description": "Two one-cent differences within tolerance.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seed": 42009,
+      "totals": {
+        "a_gross": "6438.14",
+        "a_net": "6373.77",
+        "b_gross": "6438.12",
+        "b_net": "6373.75"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "DUPLICATE": 2
+      },
+      "case_id": "case_10_duplicates",
+      "description": "Two duplicated transactions in B.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 14,
+      "seed": 42010,
+      "totals": {
+        "a_gross": "5745.25",
+        "a_net": "5687.80",
+        "b_gross": "6727.37",
+        "b_net": "6660.10"
+      }
+    },
+    {
+      "aggregate_gross_equal": true,
+      "aggregate_net_equal": true,
+      "breaks_by_type": {
+        "AMBIGUOUS": 1
+      },
+      "case_id": "case_11_ambiguous",
+      "description": "Identical-amount same-day rows with unusable references.",
+      "n_breaks": 1,
+      "rows_a": 10,
+      "rows_b": 10,
+      "seed": 42011,
+      "totals": {
+        "a_gross": "4098.34",
+        "a_net": "4057.34",
+        "b_gross": "4098.34",
+        "b_net": "4057.34"
+      }
+    },
+    {
+      "aggregate_gross_equal": false,
+      "aggregate_net_equal": false,
+      "breaks_by_type": {
+        "COMPOUND": 1
+      },
+      "case_id": "case_12_compound",
+      "description": "Fee mismatch and FX difference on the same correspondence.",
+      "n_breaks": 1,
+      "rows_a": 11,
+      "rows_b": 11,
+      "seed": 42012,
+      "totals": {
+        "a_gross": "6223.99",
+        "a_net": "6172.66",
+        "b_gross": "6223.98",
+        "b_net": "6171.80"
+      }
+    },
+    {
+      "aggregate_gross_equal": true,
+      "aggregate_net_equal": true,
+      "breaks_by_type": {
+        "COMPOUND": 1,
+        "DUPLICATE": 1,
+        "MISSING_IN_B": 1
+      },
+      "case_id": "case_13_signature_adversarial",
+      "description": "Signature adversarial case: compound FX+fee break (net -0.61 on B), offset exactly by a duplicate in B (gross 177.51 / net 175.61) and a missing-in-B row (gross 177.50 / net 175.00). Aggregate gross and net totals are EQUAL while ground truth contains 3 row-level breaks.",
+      "n_breaks": 3,
+      "rows_a": 13,
+      "rows_b": 13,
+      "seed": 42013,
+      "totals": {
+        "a_gross": "6628.26",
+        "a_net": "6572.04",
+        "b_gross": "6628.26",
+        "b_net": "6572.04"
+      }
+    },
+    {
+      "aggregate_gross_equal": true,
+      "aggregate_net_equal": true,
+      "breaks_by_type": {
+        "AMOUNT_MISMATCH": 2
+      },
+      "case_id": "case_14_aggregate_trap",
+      "description": "Aggregate totals equal on gross and net while two offsetting amount errors (+0.75 / -0.75) exist.",
+      "n_breaks": 2,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seed": 42014,
+      "totals": {
+        "a_gross": "5652.11",
+        "a_net": "5595.61",
+        "b_gross": "5652.11",
+        "b_net": "5595.61"
+      }
+    }
+  ],
+  "generator_version": "1.0",
+  "master_seed": 42,
+  "n_cases": 14,
+  "schema_version": "1.0"
+}
