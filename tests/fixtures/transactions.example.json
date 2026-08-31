@@ -1,0 +1,4 @@
+[
+  {"row_id": "A1001", "date": "2026-08-01", "reference": "PAYREF-88213", "description": "Remittance payout", "currency": "USD", "fx_rate": null, "gross_amount": 250.00, "fee_amount": 2.50, "net_amount": 247.50},
+  {"row_id": "B5001", "date": "2026-08-02", "reference": "payref 88213", "description": "PAYOUT", "currency": "USD", "fx_rate": 83.1200, "gross_amount": 250.00, "fee_amount": 3.10, "net_amount": 246.90}
+]

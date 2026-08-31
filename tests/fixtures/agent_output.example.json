@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "case_id": "case_example",
+  "system": {"name": "agent-v0-fixture", "model": "mock", "provider": "MockProvider"},
+  "matches": [{"a_row_id": "A1000", "b_row_id": "B5000"}],
+  "breaks": [
+    {
+      "break_id": "P-001",
+      "break_type": "COMPOUND",
+      "component_causes": ["FEE_MISMATCH", "FX_DIFFERENCE"],
+      "a_row_ids": ["A1001"],
+      "b_row_ids": ["B5001"],
+      "amount_a": 247.50,
+      "amount_b": 246.90,
+      "difference": 0.60,
+      "evidence": "A1001 net 247.50 vs B5001 net 246.90; fee A 2.50 vs fee B 3.10 accounts for 0.60; fx_rate 83.1200 applied on B side.",
+      "suggested_action": "Confirm partner fee schedule; book 0.60 fee adjustment.",
+      "confidence": "HIGH"
+    }
+  ]
+}

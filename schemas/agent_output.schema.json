@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_output.schema.json",
+  "title": "Reconciliation output for one evaluation case (baseline and final emit this same shape)",
+  "type": "object",
+  "required": ["schema_version", "case_id", "system", "breaks"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "case_id": { "type": "string" },
+    "system": {
+      "type": "object",
+      "required": ["name", "model"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string", "description": "e.g. baseline-v1, agent-v3" },
+        "model": { "type": "string" },
+        "provider": { "type": "string" }
+      }
+    },
+    "matches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["a_row_id", "b_row_id"],
+        "additionalProperties": false,
+        "properties": {
+          "a_row_id": { "type": "string" },
+          "b_row_id": { "type": "string" }
+        }
+      }
+    },
+    "breaks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["break_id", "break_type", "a_row_ids", "b_row_ids", "evidence", "suggested_action", "confidence"],
+        "additionalProperties": false,
+        "properties": {
+          "break_id": { "type": "string" },
+          "break_type": {
+            "type": "string",
+            "enum": ["MISSING_IN_A", "MISSING_IN_B", "AMOUNT_MISMATCH", "FEE_MISMATCH", "FX_DIFFERENCE", "ROUNDING_DIFFERENCE", "DUPLICATE", "AMBIGUOUS", "COMPOUND"]
+          },
+          "component_causes": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Required iff break_type is COMPOUND."
+          },
+          "a_row_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "b_row_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "amount_a": { "type": ["number", "null"] },
+          "amount_b": { "type": ["number", "null"] },
+          "difference": { "type": ["number", "null"] },
+          "evidence": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Calculation / source values supporting the break; every row ID cited must exist in source data."
+          },
+          "suggested_action": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] }
+        }
+      }
+    }
+  }
+}

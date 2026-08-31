@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "case_id": "case_example",
+  "seed": 42,
+  "description": "Signature adversarial shape: fee+FX on the same correspondence, offsetting duplicate keeps aggregates equal.",
+  "matches": [{"a_row_id": "A1000", "b_row_id": "B5000"}],
+  "breaks": [
+    {
+      "break_id": "GT-001",
+      "break_type": "COMPOUND",
+      "component_causes": ["FEE_MISMATCH", "FX_DIFFERENCE"],
+      "a_row_ids": ["A1001"],
+      "b_row_ids": ["B5001"],
+      "expected_difference": 0.60,
+      "notes": "Fee differs by 0.60; FX rounding on converted amount."
+    },
+    {
+      "break_id": "GT-002",
+      "break_type": "DUPLICATE",
+      "a_row_ids": [],
+      "b_row_ids": ["B5002", "B5003"],
+      "expected_difference": 0.00,
+      "notes": "Offsetting duplicate pair nets to zero in aggregate."
+    }
+  ]
+}

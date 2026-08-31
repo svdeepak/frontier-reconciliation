@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transaction.schema.json",
+  "title": "Transaction row (Source A or Source B)",
+  "type": "object",
+  "required": [
+    "row_id",
+    "date",
+    "reference",
+    "currency",
+    "gross_amount",
+    "fee_amount",
+    "net_amount"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "row_id": {
+      "type": "string",
+      "pattern": "^[AB][0-9]{4,}$",
+      "description": "Unique within a case; prefix A or B identifies the source."
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "reference": {
+      "type": "string",
+      "description": "Merchant/partner reference; may be messy (casing, truncation, prefixes)."
+    },
+    "description": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "fx_rate": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Rate applied when the row is a conversion of a foreign-currency amount; null otherwise."
+    },
+    "gross_amount": {
+      "type": "number"
+    },
+    "fee_amount": {
+      "type": "number"
+    },
+    "net_amount": {
+      "type": "number",
+      "description": "gross_amount - fee_amount; generator guarantees consistency for clean rows."
+    },
+    "foreign_currency": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z]{3}$",
+      "description": "Original currency when the row books a converted amount; null otherwise."
+    },
+    "foreign_amount": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "Amount in foreign_currency. Convention: gross_amount = round(foreign_amount * fx_rate, 2)."
+    }
+  }
+}

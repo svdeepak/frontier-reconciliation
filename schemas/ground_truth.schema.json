@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ground_truth.schema.json",
+  "title": "Ground truth for one evaluation case",
+  "type": "object",
+  "required": ["schema_version", "case_id", "seed", "matches", "breaks"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "case_id": { "type": "string" },
+    "seed": { "type": "integer" },
+    "description": { "type": "string" },
+    "matches": {
+      "type": "array",
+      "description": "Clean 1:1 correspondences (MATCH rows).",
+      "items": {
+        "type": "object",
+        "required": ["a_row_id", "b_row_id"],
+        "additionalProperties": false,
+        "properties": {
+          "a_row_id": { "type": "string" },
+          "b_row_id": { "type": "string" }
+        }
+      }
+    },
+    "breaks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["break_id", "break_type", "a_row_ids", "b_row_ids"],
+        "additionalProperties": false,
+        "properties": {
+          "break_id": { "type": "string" },
+          "break_type": {
+            "type": "string",
+            "enum": ["MISSING_IN_A", "MISSING_IN_B", "AMOUNT_MISMATCH", "FEE_MISMATCH", "FX_DIFFERENCE", "ROUNDING_DIFFERENCE", "DUPLICATE", "AMBIGUOUS", "COMPOUND"]
+          },
+          "component_causes": {
+            "type": "array",
+            "description": "Required iff break_type is COMPOUND: the full set of component causes.",
+            "items": {
+              "type": "string",
+              "enum": ["MISSING_IN_A", "MISSING_IN_B", "AMOUNT_MISMATCH", "FEE_MISMATCH", "FX_DIFFERENCE", "ROUNDING_DIFFERENCE", "DUPLICATE", "AMBIGUOUS"]
+            },
+            "minItems": 2,
+            "uniqueItems": true
+          },
+          "a_row_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "b_row_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+          "expected_difference": { "type": ["number", "null"] },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}
