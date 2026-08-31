@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 220.99,
+      "amount_b": 225.99,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -5.0,
+      "evidence": "Rows A1011/B5011: gross A 220.99 vs B 225.99 (delta -5.00). Net A 218.78 vs B 223.78 (delta -5.00). Analyst interpretation: Row A1011 and B5011 share the same reference and fee (2.21), but gross amounts differ by 5.00 GBP, causing net amounts to also differ by 5.00.",
+      "suggested_action": "Verify with the payment processor whether the transaction amount for PAY-27904 was 220.99 or 225.99; date difference (Aug 8 vs Aug 9) may indicate a correction or duplicate capture."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 8.35,
+      "amount_b": 7.95,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.4,
+      "evidence": "Rows A1012/B5012: fee A 8.35 vs B 7.95 (delta 0.40). Net A 826.97 vs B 827.37 (delta -0.40). Analyst interpretation: Row A1012 and B5012 have identical gross amounts (835.32 AED), but fee A 8.35 vs fee B 7.95 creates a 0.40 difference in net amounts.",
+      "suggested_action": "Confirm the applicable fee rate with the payment processor for PB/TXN-42819; a 0.40 AED variance may reflect different fee tiers or a misconfigured rate."
+    }
+  ],
+  "case_id": "case_07_amount_and_fee",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

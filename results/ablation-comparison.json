@@ -1,0 +1,53 @@
+{
+  "baseline": {
+    "system": {
+      "model": "minimax/minimax-m2.7",
+      "name": "agent-v1",
+      "provenance": "run_meta",
+      "provider": "openrouter"
+    },
+    "totals": {
+      "cause_accuracy_over_tp": 1.0,
+      "clean_case_false_positives": 0,
+      "evidence_validity_rate": 1.0,
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "n_predictions": 23,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 23
+    }
+  },
+  "delta": {
+    "cause_accuracy_over_tp": -0.1364,
+    "clean_case_false_positives": 0,
+    "evidence_validity_rate": 0.0,
+    "f1": -0.0222,
+    "precision": 0.0,
+    "recall": -0.0435
+  },
+  "primary_delta": -0.0222,
+  "primary_metric": "f1",
+  "schema_version": "1.0",
+  "solution": {
+    "system": {
+      "model": "minimax/minimax-m2.7",
+      "name": "agent-v1-ablation-llm-cause",
+      "provenance": "run_meta",
+      "provider": "openrouter"
+    },
+    "totals": {
+      "cause_accuracy_over_tp": 0.8636,
+      "clean_case_false_positives": 0,
+      "evidence_validity_rate": 1.0,
+      "f1": 0.9778,
+      "fn": 1,
+      "fp": 0,
+      "n_predictions": 22,
+      "precision": 1.0,
+      "recall": 0.9565,
+      "tp": 22
+    }
+  }
+}

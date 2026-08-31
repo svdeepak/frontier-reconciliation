@@ -1,0 +1,76 @@
+{
+  "breaks": [],
+  "case_id": "case_02_clean_messy",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1011",
+      "b_row_id": "B5011"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    },
+    {
+      "a_row_id": "A1013",
+      "b_row_id": "B5013"
+    },
+    {
+      "a_row_id": "A1014",
+      "b_row_id": "B5014"
+    },
+    {
+      "a_row_id": "A1015",
+      "b_row_id": "B5015"
+    },
+    {
+      "a_row_id": "A1016",
+      "b_row_id": "B5016"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

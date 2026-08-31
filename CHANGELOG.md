@@ -202,3 +202,72 @@ or real-world files.
 
 **Decision:** Recorded as a secondary result. No implementation change.
 The primary seed-42 experiment (commit 1fc5850) stands unmodified.
+
+## ABLATION EXPERIMENT — LLM cause classification (secondary; primary agent-v1 result unchanged)
+
+**Hypothesis:** if the LLM classifies causes as well as the arithmetic does,
+replacing the deterministic cause-classification layer should leave accuracy
+unchanged and cost only latency and tokens. If accuracy falls, that layer is
+doing measurable work.
+
+**Exact difference:** candidate breaks receive their `break_type` (and COMPOUND
+`component_causes`) from the LLM instead of `agent.classify_pair`. Everything
+else is reused unchanged: normalization, matching, candidate construction, the
+LLM system prompt, reply parsing, the taxonomy gate, **the verifier (still
+downstream, unmodified)**, every computed amount, the `matches` array, the output
+schema, the evaluator, the model/provider (`minimax/minimax-m2.7` via
+OpenRouter), and the committed seed-42 dataset.
+
+**Isolation:** implemented as a separate module `src/recon/ablation_llm_cause.py`
+gated behind `LLM_CAUSE_ABLATION=1`. `src/recon/agent.py` was **not modified**
+(SHA-256 verified identical to commit 1fc5850), so agent-v1 default behaviour is
+unaffected. The LLM is not shown the deterministic label, and no candidate is
+relabelled `AMBIGUOUS` to pass an existing gate — the module implements its own
+small merge instead.
+
+**Measured result (seed-42, 14 cases, 23 breaks) — the ablation is WORSE:**
+
+| Metric | agent-v1 (control) | Ablation | Delta |
+|---|---|---|---|
+| F1 | 1.0 | 0.9778 | −0.0222 |
+| Precision | 1.0 | 1.0 | 0 |
+| Recall | 1.0 | 0.9565 | −0.0435 |
+| Cause accuracy | 1.0 | 0.8636 | −0.1364 |
+| Evidence validity | 1.0 | 1.0 | 0 |
+| TP / FP / FN | 23/0/0 | 22/0/1 | −1 TP, +1 FN |
+| Verifier corrections | 0 | 4 | +4 |
+| LLM calls | 1 | 12 | ×12 |
+| Runtime | 13.9s | 129.05s | ×9.3 |
+| Prompt / completion tokens | 689 / 643 | 11,523 / 8,015 | ×16.7 / ×12.5 |
+| Reasoning tokens | — | 4,801 | — |
+| Cost | $0.00088047 | $0.01309202 | ×14.9 |
+
+**Where it diverged:** the LLM's label was accepted for 23/23 candidates and
+agreed with the arithmetic on **19/23 (82.6%)**. All four divergences are the
+same error — failing to attribute a one-cent gross gap to FX rounding-mode
+divergence on an identical foreign amount and rate (`case_08` ×2, `case_12`,
+`case_13`), the same failure the one-prompt baseline made on seed-42, reproduced
+even though the model was handed the computed difference and the FX fields.
+
+**Two mechanisms:** (1) on `case_12` the model returned `component_causes` as
+prose rather than enum values, so the taxonomy filter emptied the set and the
+verifier dropped the break — the 1 FN came from a formatting habit, not faulty
+reasoning. (2) On `case_13` a COMPOUND relabelled `ROUNDING_DIFFERENCE` changed
+which amounts `_recompute()` reports, and the verifier issued 3
+`CORRECTED_ARITHMETIC` entries restoring the correct figures: without the
+verifier the ablation's numeric output would have been wrong, not just
+mislabelled.
+
+**Decision: REJECTED.** agent-v1's deterministic cause-classification layer is
+retained unchanged. No implementation was tuned in response to this result. The
+only mid-experiment code change was a crash fix in the ablation harness itself
+(the model sent an explicit `"component_causes": null`, and `dict.get(k, [])`
+returns `None` for a present-but-null key); the run was restarted from scratch
+so all 14 cases come from one consistent run.
+
+**Limitations:** one run, one model, one dataset, no variance estimate. The
+verifier confounds the accuracy reading — a wrong COMPOUND component set causes a
+drop rather than a mislabel, affecting 2 of 23 breaks. The prompt was
+deliberately reused verbatim rather than written for exhaustive classification;
+tuning it would have been an optimization pass, which was out of scope. Full
+detail: docs/ABLATION_LLM_CAUSE.md.

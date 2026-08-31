@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 447.66,
+      "amount_b": 460.06,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -12.4,
+      "evidence": "Rows A1011/B5011: gross A 447.66 vs B 460.06 (delta -12.40). Net A 443.18 vs B 455.58 (delta -12.40). Analyst interpretation: Rows A1011 and B5011 share the same date, reference, currency, and fee (4.48), but gross/net differ by 12.40 INR consistently, indicating a unilateral data entry error rather than a fee or FX issue.",
+      "suggested_action": "Investigate whether the merchant or payment processor recorded the correct transaction amount by reviewing the original payment instruction or settlement record."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 549.76,
+      "amount_b": 546.01,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 3.75,
+      "evidence": "Rows A1012/B5012: gross A 549.76 vs B 546.01 (delta 3.75). Net A 544.26 vs B 540.51 (delta 3.75). Analyst interpretation: Rows A1012 and B5012 share the same reference, currency, and fee (5.50), with gross/net differing by 3.75 INR across both columns, consistent with a data discrepancy rather than a fee or FX problem.",
+      "suggested_action": "Verify the source transaction amount with the merchant or acquirer and reconcile against the original payment record to determine which side recorded the correct gross amount."
+    }
+  ],
+  "case_id": "case_05_amount_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

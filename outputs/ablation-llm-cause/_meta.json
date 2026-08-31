@@ -1,0 +1,1004 @@
+{
+  "cases": [
+    {
+      "case_id": "case_01_clean_small",
+      "deterministic_classification": [],
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 0,
+      "n_candidates": 0,
+      "n_candidates_sent_to_llm": 0,
+      "n_llm_agrees_with_deterministic": 0,
+      "n_llm_types_accepted": 0,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_02_clean_messy",
+      "deterministic_classification": [],
+      "llm": {
+        "called": false,
+        "error": null,
+        "n_candidates": 0,
+        "seconds": 0.0,
+        "usage": {}
+      },
+      "llm_decisions_applied": [],
+      "n_breaks_emitted": 0,
+      "n_candidates": 0,
+      "n_candidates_sent_to_llm": 0,
+      "n_llm_agrees_with_deterministic": 0,
+      "n_llm_types_accepted": 0,
+      "n_pairs": 16,
+      "n_verifier_corrections": 0,
+      "rows_a": 16,
+      "rows_b": 16,
+      "seconds": 0.0,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_03_missing_in_b",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "MISSING_IN_B",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "MISSING_IN_B",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 8.13,
+        "usage": {
+          "completion_tokens": 430,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 212
+          },
+          "cost": 0.0007557,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000516,
+            "upstream_inference_cost": 0.0007557,
+            "upstream_inference_prompt_cost": 0.0002397
+          },
+          "is_byok": false,
+          "prompt_tokens": 799,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 1229
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "MISSING_IN_B",
+          "llm_components": [],
+          "llm_type": "MISSING_IN_B"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "MISSING_IN_B",
+          "llm_components": [],
+          "llm_type": "MISSING_IN_B"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 10,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 10,
+      "seconds": 8.14,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_04_missing_in_a",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "MISSING_IN_A",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "MISSING_IN_A",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 9.1,
+        "usage": {
+          "completion_tokens": 538,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 277
+          },
+          "cost": 0.0008844,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0006456,
+            "upstream_inference_cost": 0.0008844,
+            "upstream_inference_prompt_cost": 0.0002388
+          },
+          "is_byok": false,
+          "prompt_tokens": 796,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 1334
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "MISSING_IN_A",
+          "llm_components": [],
+          "llm_type": "MISSING_IN_A"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "MISSING_IN_A",
+          "llm_components": [],
+          "llm_type": "MISSING_IN_A"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 10,
+      "n_verifier_corrections": 0,
+      "rows_a": 10,
+      "rows_b": 12,
+      "seconds": 9.11,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_05_amount_mismatch",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "AMOUNT_MISMATCH",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "AMOUNT_MISMATCH",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 13.36,
+        "usage": {
+          "completion_tokens": 699,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 428
+          },
+          "cost": 0.00092286,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0008388,
+            "upstream_inference_cost": 0.00092286,
+            "upstream_inference_prompt_cost": 8.406e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 993,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 1692
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "AMOUNT_MISMATCH",
+          "llm_components": [],
+          "llm_type": "AMOUNT_MISMATCH"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "AMOUNT_MISMATCH",
+          "llm_components": [],
+          "llm_type": "AMOUNT_MISMATCH"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 13.36,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_06_fee_mismatch",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "FEE_MISMATCH",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "FEE_MISMATCH",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 9.91,
+        "usage": {
+          "completion_tokens": 585,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 289
+          },
+          "cost": 0.00078546,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000702,
+            "upstream_inference_cost": 0.00078546,
+            "upstream_inference_prompt_cost": 8.346e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 991,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 1576
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "FEE_MISMATCH",
+          "llm_components": [],
+          "llm_type": "FEE_MISMATCH"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "FEE_MISMATCH",
+          "llm_components": [],
+          "llm_type": "FEE_MISMATCH"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 9.91,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_07_amount_and_fee",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "AMOUNT_MISMATCH",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "FEE_MISMATCH",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 7.29,
+        "usage": {
+          "completion_tokens": 526,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 242
+          },
+          "cost": 0.00137646,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0012624,
+            "upstream_inference_cost": 0.00137646,
+            "upstream_inference_prompt_cost": 0.00011406
+          },
+          "is_byok": false,
+          "prompt_tokens": 992,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 1518
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "AMOUNT_MISMATCH",
+          "llm_components": [],
+          "llm_type": "AMOUNT_MISMATCH"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "FEE_MISMATCH",
+          "llm_components": [],
+          "llm_type": "FEE_MISMATCH"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 7.29,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_08_fx_difference",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "FX_DIFFERENCE",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "FX_DIFFERENCE",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 11.57,
+        "usage": {
+          "completion_tokens": 673,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 405
+          },
+          "cost": 0.00092616,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0008076,
+            "upstream_inference_cost": 0.00092616,
+            "upstream_inference_prompt_cost": 0.00011856
+          },
+          "is_byok": false,
+          "prompt_tokens": 1108,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 1781
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": false,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "FX_DIFFERENCE",
+          "llm_components": [],
+          "llm_type": "ROUNDING_DIFFERENCE"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": false,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "FX_DIFFERENCE",
+          "llm_components": [],
+          "llm_type": "ROUNDING_DIFFERENCE"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 0,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 10,
+      "n_verifier_corrections": 0,
+      "rows_a": 10,
+      "rows_b": 10,
+      "seconds": 11.57,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_09_rounding",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "ROUNDING_DIFFERENCE",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "ROUNDING_DIFFERENCE",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 12.73,
+        "usage": {
+          "completion_tokens": 665,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 411
+          },
+          "cost": 0.00088086,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.000798,
+            "upstream_inference_cost": 0.00088086,
+            "upstream_inference_prompt_cost": 8.286e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 989,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 1654
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "ROUNDING_DIFFERENCE",
+          "llm_components": [],
+          "llm_type": "ROUNDING_DIFFERENCE"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "ROUNDING_DIFFERENCE",
+          "llm_components": [],
+          "llm_type": "ROUNDING_DIFFERENCE"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 12.73,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_10_duplicates",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "DUPLICATE",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "DUPLICATE",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 6.68,
+        "usage": {
+          "completion_tokens": 528,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 255
+          },
+          "cost": 0.00137766,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0012672,
+            "upstream_inference_cost": 0.00137766,
+            "upstream_inference_prompt_cost": 0.00011046
+          },
+          "is_byok": false,
+          "prompt_tokens": 986,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 1514
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "DUPLICATE",
+          "llm_components": [],
+          "llm_type": "DUPLICATE"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "DUPLICATE",
+          "llm_components": [],
+          "llm_type": "DUPLICATE"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 14,
+      "seconds": 6.68,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_11_ambiguous",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "AMBIGUOUS",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 1,
+        "seconds": 11.17,
+        "usage": {
+          "completion_tokens": 641,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 502
+          },
+          "cost": 0.0010176,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0007692,
+            "upstream_inference_cost": 0.0010176,
+            "upstream_inference_prompt_cost": 0.0002484
+          },
+          "is_byok": false,
+          "prompt_tokens": 828,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 1469
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "AMBIGUOUS",
+          "llm_components": [],
+          "llm_type": "AMBIGUOUS"
+        }
+      ],
+      "n_breaks_emitted": 1,
+      "n_candidates": 1,
+      "n_candidates_sent_to_llm": 1,
+      "n_llm_agrees_with_deterministic": 1,
+      "n_llm_types_accepted": 1,
+      "n_pairs": 8,
+      "n_verifier_corrections": 0,
+      "rows_a": 10,
+      "rows_b": 10,
+      "seconds": 11.18,
+      "verifier_corrections": []
+    },
+    {
+      "case_id": "case_12_compound",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "COMPOUND",
+          "component_causes": [
+            "FEE_MISMATCH",
+            "FX_DIFFERENCE"
+          ]
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 1,
+        "seconds": 3.47,
+        "usage": {
+          "completion_tokens": 692,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 459
+          },
+          "cost": 0.00145304,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0011764,
+            "upstream_inference_cost": 0.00145304,
+            "upstream_inference_prompt_cost": 0.00027664
+          },
+          "is_byok": false,
+          "prompt_tokens": 728,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "total_tokens": 1420
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": false,
+          "break_id": "C-001",
+          "deterministic_components": [
+            "FEE_MISMATCH",
+            "FX_DIFFERENCE"
+          ],
+          "deterministic_type": "COMPOUND",
+          "llm_components": [
+            "FEE_MISMATCH: fee A 2.50 vs B 3.35 (delta -0.85) \u2014 unexplained discrepancy beyond rounding",
+            "ROUNDING_DIFFERENCE: gross A 1340.30 vs B 1340.29 \u2014 same EUR 1234.50 @ 1.0857 yields 1340.29665, split by rounding mode (round-half-up vs truncation)"
+          ],
+          "llm_type": "COMPOUND"
+        }
+      ],
+      "n_breaks_emitted": 0,
+      "n_candidates": 1,
+      "n_candidates_sent_to_llm": 1,
+      "n_llm_agrees_with_deterministic": 0,
+      "n_llm_types_accepted": 1,
+      "n_pairs": 11,
+      "n_verifier_corrections": 1,
+      "rows_a": 11,
+      "rows_b": 11,
+      "seconds": 3.47,
+      "verifier_corrections": [
+        {
+          "action": "DROPPED",
+          "break_id": "C-001",
+          "detail": [],
+          "reason": "compound_component_set_unsupported"
+        }
+      ]
+    },
+    {
+      "case_id": "case_13_signature_adversarial",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "DUPLICATE",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "COMPOUND",
+          "component_causes": [
+            "FEE_MISMATCH",
+            "FX_DIFFERENCE"
+          ]
+        },
+        {
+          "break_id": "C-003",
+          "break_type": "MISSING_IN_B",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 3,
+        "seconds": 18.49,
+        "usage": {
+          "completion_tokens": 1029,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 576
+          },
+          "cost": 0.00141726,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0012348,
+            "upstream_inference_cost": 0.00141726,
+            "upstream_inference_prompt_cost": 0.00018246
+          },
+          "is_byok": false,
+          "prompt_tokens": 1321,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 2350
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "DUPLICATE",
+          "llm_components": [],
+          "llm_type": "DUPLICATE"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": false,
+          "break_id": "C-002",
+          "deterministic_components": [
+            "FEE_MISMATCH",
+            "FX_DIFFERENCE"
+          ],
+          "deterministic_type": "COMPOUND",
+          "llm_components": [],
+          "llm_type": "ROUNDING_DIFFERENCE"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-003",
+          "deterministic_components": [],
+          "deterministic_type": "MISSING_IN_B",
+          "llm_components": [],
+          "llm_type": "MISSING_IN_B"
+        }
+      ],
+      "n_breaks_emitted": 3,
+      "n_candidates": 3,
+      "n_candidates_sent_to_llm": 3,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 3,
+      "n_pairs": 12,
+      "n_verifier_corrections": 3,
+      "rows_a": 13,
+      "rows_b": 13,
+      "seconds": 18.5,
+      "verifier_corrections": [
+        {
+          "action": "CORRECTED_ARITHMETIC",
+          "break_id": "C-002",
+          "detail": {
+            "claimed": "1337.80",
+            "recomputed": "1340.30"
+          },
+          "reason": "amount_a"
+        },
+        {
+          "action": "CORRECTED_ARITHMETIC",
+          "break_id": "C-002",
+          "detail": {
+            "claimed": "1337.19",
+            "recomputed": "1340.29"
+          },
+          "reason": "amount_b"
+        },
+        {
+          "action": "CORRECTED_ARITHMETIC",
+          "break_id": "C-002",
+          "detail": {
+            "claimed": "0.61",
+            "recomputed": "0.01"
+          },
+          "reason": "difference"
+        }
+      ]
+    },
+    {
+      "case_id": "case_14_aggregate_trap",
+      "deterministic_classification": [
+        {
+          "break_id": "C-001",
+          "break_type": "AMOUNT_MISMATCH",
+          "component_causes": []
+        },
+        {
+          "break_id": "C-002",
+          "break_type": "AMOUNT_MISMATCH",
+          "component_causes": []
+        }
+      ],
+      "llm": {
+        "called": true,
+        "error": null,
+        "n_candidates": 2,
+        "seconds": 17.1,
+        "usage": {
+          "completion_tokens": 1009,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "reasoning_tokens": 745
+          },
+          "cost": 0.00129456,
+          "cost_details": {
+            "upstream_inference_completions_cost": 0.0012108,
+            "upstream_inference_cost": 0.00129456,
+            "upstream_inference_prompt_cost": 8.376e-05
+          },
+          "is_byok": false,
+          "prompt_tokens": 992,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 891,
+            "video_tokens": 0
+          },
+          "total_tokens": 2001
+        }
+      },
+      "llm_decisions_applied": [
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-001",
+          "deterministic_components": [],
+          "deterministic_type": "AMOUNT_MISMATCH",
+          "llm_components": [],
+          "llm_type": "AMOUNT_MISMATCH"
+        },
+        {
+          "accepted_type": true,
+          "agrees_with_deterministic": true,
+          "break_id": "C-002",
+          "deterministic_components": [],
+          "deterministic_type": "AMOUNT_MISMATCH",
+          "llm_components": [],
+          "llm_type": "AMOUNT_MISMATCH"
+        }
+      ],
+      "n_breaks_emitted": 2,
+      "n_candidates": 2,
+      "n_candidates_sent_to_llm": 2,
+      "n_llm_agrees_with_deterministic": 2,
+      "n_llm_types_accepted": 2,
+      "n_pairs": 12,
+      "n_verifier_corrections": 0,
+      "rows_a": 12,
+      "rows_b": 12,
+      "seconds": 17.1,
+      "verifier_corrections": []
+    }
+  ],
+  "control_system": "agent-v1",
+  "data_master_seed": 42,
+  "experiment": "ablation: LLM cause classification replaces deterministic",
+  "model": "minimax/minimax-m2.7",
+  "n_candidates_sent_to_llm": 23,
+  "n_llm_agrees_with_deterministic": 19,
+  "n_llm_calls": 12,
+  "n_llm_types_accepted": 23,
+  "provider": "openrouter",
+  "system": "agent-v1-ablation-llm-cause",
+  "total_cost_usd": 0.01309202,
+  "total_reasoning_tokens": 4801,
+  "total_seconds": 129.05,
+  "total_tokens": {
+    "completion": 8015,
+    "prompt": 11523
+  },
+  "total_verifier_corrections": 4
+}

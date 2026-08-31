@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 5.55,
+      "amount_b": 6.15,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -0.6,
+      "evidence": "Rows A1011/B5011: fee A 5.55 vs B 6.15 (delta -0.60). Net A 549.43 vs B 548.83 (delta 0.60). Analyst interpretation: Rows A1011 and B5011 share identical gross of 554.98 but fee amounts diverge (5.55 vs 6.15), producing a net delta of exactly 0.60 that mirrors the fee gap.",
+      "suggested_action": "Confirm which fee (A 5.55 or B 6.15) is contractual or correct for reference PAY-95086, and request supporting fee schedule documentation to resolve the 0.60 discrepancy."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 6.63,
+      "amount_b": 7.88,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -1.25,
+      "evidence": "Rows A1012/B5012: fee A 6.63 vs B 7.88 (delta -1.25). Net A 655.95 vs B 654.70 (delta 1.25). Analyst interpretation: Rows A1012 and B5012 share identical gross of 662.58 but fee amounts diverge (6.63 vs 7.88), producing a net delta of exactly 1.25 that mirrors the fee gap.",
+      "suggested_action": "Confirm which fee (A 6.63 or B 7.88) is contractual or correct for reference RMT-39198, and request supporting fee schedule documentation to resolve the 1.25 discrepancy."
+    }
+  ],
+  "case_id": "case_06_fee_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

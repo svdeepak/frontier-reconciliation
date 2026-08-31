@@ -1,0 +1,77 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1010"
+      ],
+      "amount_a": 4742.59,
+      "amount_b": 4742.58,
+      "b_row_ids": [
+        "B5010"
+      ],
+      "break_id": "P-001",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "Rows A1010/B5010: gross A 4742.59 vs B 4742.58 (delta 0.01); same INR 4441.04 @ 1.0679: A 4742.59 vs B 4742.58 \u2014 rounding-mode divergence. Net A 4695.16 vs B 4695.15 (delta 0.01). Analyst interpretation: Both rows share identical INR amount (4441.04) and FX rate (1.0679), yet report USD gross of 4742.59 vs 4742.58\u2014a one-cent divergence from different rounding of the same conversion.",
+      "suggested_action": "Confirm rounding policy alignment between systems A and B; if policies match, escalate to FX engine vendor for floating-point conversion audit."
+    },
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 757.78,
+      "amount_b": 757.77,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-002",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "Rows A1011/B5011: gross A 757.78 vs B 757.77 (delta 0.01); same INR 805.46 @ 0.9408: A 757.78 vs B 757.77 \u2014 rounding-mode divergence. Net A 750.20 vs B 750.19 (delta 0.01). Analyst interpretation: Both rows share identical INR amount (805.46) and FX rate (0.9408), yet report AED gross of 757.78 vs 757.77\u2014a one-cent divergence from different rounding of the same conversion.",
+      "suggested_action": "Confirm rounding policy alignment between systems A and B; if policies match, escalate to FX engine vendor for floating-point conversion audit."
+    }
+  ],
+  "case_id": "case_08_fx_difference",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

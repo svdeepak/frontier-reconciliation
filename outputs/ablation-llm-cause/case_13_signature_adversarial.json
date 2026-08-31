@@ -1,0 +1,102 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 175.61,
+      "b_row_ids": [
+        "B5012",
+        "B5012D"
+      ],
+      "break_id": "P-001",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 175.61,
+      "evidence": "B rows B5012/B5012D share reference 'inv 70055', currency USD, gross 177.51 and fee 1.90: the same economic transaction booked 2 times, inflating B by net 175.61. Analyst interpretation: B rows B5012 and B5012D represent the same economic transaction (reference 'inv 70055', gross 177.51, fee 1.90, net 175.61) duplicated in system B, inflating the ledger by one net amount.",
+      "suggested_action": "Delete the later-dated B row (B5012D) as a duplicate of B5012; retain the original and reconcile net 175.61."
+    },
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1340.3,
+      "amount_b": 1340.29,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-002",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "Rows A1011/B5011: gross A 1340.30 vs B 1340.29 (delta 0.01); fee A 2.50 vs B 3.10 (delta -0.60); same EUR 1234.50 @ 1.0857: A 1340.30 vs B 1340.29 \u2014 rounding-mode divergence. Net A 1337.80 vs B 1337.19 (delta 0.61). Analyst interpretation: Rows A1011 and B5011 share identical fx_rate (1.0857) and foreign_amount (EUR 1234.50), but gross diverges by 0.01 (1340.30 vs 1340.29) due to opposing rounding modes on the same base calculation, with a compounding fee delta of 0.60 producing a net gap of 0.61.",
+      "suggested_action": "Accept the reconciliation difference of 0.61 as rounding tolerance; document the rounding-mode divergence for future FX policy review."
+    },
+    {
+      "a_row_ids": [
+        "A1013"
+      ],
+      "amount_a": 175.0,
+      "amount_b": null,
+      "b_row_ids": [],
+      "break_id": "P-003",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 175.0,
+      "evidence": "A row A1013 (ref 'PAY-70090', USD gross 177.50, net 175.00, dated 2026-08-14) has no counterpart in B after reference, amount and date matching. Analyst interpretation: A row A1013 (ref 'PAY-70090', USD gross 177.50, net 175.00, dated 2026-08-14) has no matching counterpart in B after exhaustive reference, amount, and date matching.",
+      "suggested_action": "Investigate whether the payment was sent but not received by the counterparty; if unreceived, initiate a payment trace; if the counterparty confirms receipt, request a late statement entry in B."
+    }
+  ],
+  "case_id": "case_13_signature_adversarial",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

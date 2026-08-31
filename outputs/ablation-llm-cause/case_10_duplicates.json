@@ -1,0 +1,91 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 354.46,
+      "b_row_ids": [
+        "B5011",
+        "B5011D"
+      ],
+      "break_id": "P-001",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 354.46,
+      "evidence": "B rows B5011/B5011D share reference 'PAY 46129', currency EUR, gross 358.04 and fee 3.58: the same economic transaction booked 2 times, inflating B by net 354.46. Analyst interpretation: B rows B5011 and B5011D are identical duplicates of reference PAY 46129, each with gross 358.04, fee 3.58, and net 354.46, causing a single net amount to be counted twice in B.",
+      "suggested_action": "Delete one of the duplicate B rows (B5011 or B5011D) to remove the double-counted transaction."
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 617.84,
+      "b_row_ids": [
+        "B5012",
+        "B5012D"
+      ],
+      "break_id": "P-002",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 617.84,
+      "evidence": "B rows B5012/B5012D share reference 'PAY-27777', currency USD, gross 624.08 and fee 6.24: the same economic transaction booked 2 times, inflating B by net 617.84. Analyst interpretation: B rows B5012 and B5012D are identical duplicates of reference PAY-27777, each with gross 624.08, fee 6.24, and net 617.84, causing a single net amount to be counted twice in B.",
+      "suggested_action": "Delete one of the duplicate B rows (B5012 or B5012D) to remove the double-counted transaction."
+    }
+  ],
+  "case_id": "case_10_duplicates",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1011",
+      "b_row_id": "B5011"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}

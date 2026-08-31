@@ -1,0 +1,63 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1009",
+        "A1010"
+      ],
+      "amount_a": 666.9,
+      "amount_b": 666.9,
+      "b_row_ids": [
+        "B5009",
+        "B5010"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMBIGUOUS",
+      "confidence": "LOW",
+      "difference": 0.0,
+      "evidence": "A rows A1009/A1010 and B rows B5009/B5010 share currency and amount on overlapping dates with unusable references (REF ILLEGIBLE, REF MISSING); correspondence cannot be established from the data. Analyst interpretation: Both sides present with matching totals (666.90) and equal row counts, but B-side references are illegible or missing, preventing deterministic A-to-B row correspondence.",
+      "suggested_action": "Retrieve original remittance advice or payment records to establish which invoice (INV-21386 vs INV-21386X) maps to which B-side entry, then re-submit for matching."
+    }
+  ],
+  "case_id": "case_11_ambiguous",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1-ablation-llm-cause",
+    "provider": "openrouter"
+  }
+}
