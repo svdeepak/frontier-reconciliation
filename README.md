@@ -20,7 +20,7 @@ any agent implementation, and unchanged since (verifiable in git history).
 
 ---
 
-## 1. Problem
+## 1. Problem, user, and the actual bottleneck
 
 Reconciliation tools routinely confirm that two sources agree **in aggregate**
 and report the period as clean. Aggregate agreement is a much weaker statement
@@ -28,6 +28,30 @@ than row-level agreement: offsetting errors cancel in the totals while every
 underlying transaction remains wrong. This project treats row-level break
 detection as the task, and deliberately includes cases where the totals tie out
 and the rows do not.
+
+**Intended user:** a finance/operations analyst reconciling transactions between
+an internal ledger and a partner statement, who must sign off on a period and
+act on each exception.
+
+**The actual bottleneck — measured, not assumed.** The bottleneck is not
+"the model cannot reason about reconciliation." On the seed-42 evaluation set the
+one-prompt LLM baseline scored **F1 0.8182 with zero clean-case false positives
+and zero hallucinated row IDs** — it is broadly competent at spotting that
+something is wrong. It failed on three mechanical things:
+
+1. **Row-set completeness on multi-row breaks** — citing one row of a two-row
+   duplicate (`case_10` ×2, `case_13`).
+2. **Cause attribution requiring arithmetic** — calling an FX rounding-mode
+   divergence a rounding difference (`case_08` ×2), and giving a COMPOUND the
+   wrong component set (`case_12`, `case_13`).
+3. **Schema formatting** — emitting `component_causes: null` instead of omitting
+   the field, invalidating an otherwise-correct answer (`case_04`, −2 TP).
+
+Every one of those is decidable by a `Decimal` comparison, a set equality, or a
+schema. That is the bottleneck this design attacks: not reasoning capacity, but
+the fact that arithmetic and set membership were being delegated to a component
+that does them probabilistically. The
+[rejected ablation](docs/ABLATION_LLM_CAUSE.md) tests that claim directly.
 
 ## 2. Architecture
 
@@ -226,6 +250,12 @@ make report     # M6: XLSX exception reports -> reports/<case_id>.xlsx
 make test       # full test suite
 ```
 
+**Sample artifact.** `reports/case_13_signature_adversarial.xlsx` is committed as
+the sample deliverable — generated from the real agent-v1 seed-42 run, three
+sheets (Summary / Exceptions / Evidence). The other 13 workbooks are not
+committed; `make report` regenerates all 14 from the committed
+`outputs/solution/`. Step-by-step setup: **[REPRODUCTION.md](REPRODUCTION.md)**.
+
 `make data` is idempotent: regeneration from seed 42 reproduces the committed
 datasets byte-for-byte, so the committed ground truth can be independently
 re-derived.
@@ -304,18 +334,27 @@ Stated plainly, because the headline numbers invite over-reading:
 - **14 cases, 23 breaks, one seed (42), one model, one run each.** F1 = 1.0 means
   the solution made no scoring error on *this* set. It is not a claim of general
   reconciliation accuracy, and a single-run result carries no variance estimate.
-- **This is an architecture comparison, not a like-for-like LLM comparison.**
-  The baseline makes 14 LLM calls; the solution makes 1. The runtime and cost
-  gaps (−98.3%, −99.7%) mostly measure *not calling the model*. Read them as
-  "deterministic-first pipeline vs one-prompt LLM", which is the comparison the
-  project set out to make.
+- **Resource comparison, NOT a like-for-like LLM comparison.** On these
+  datasets the **baseline used 14 LLM calls and agent-v1 used 1.** The runtime
+  and cost gaps (−98.3%, −99.7%) therefore mostly measure *not calling the
+  model*. They compare two architectures — deterministic-first pipeline vs
+  one-prompt LLM — and must not be quoted as one model configuration
+  outperforming another. The accuracy delta is the like-for-like part: same
+  model, same data, same scorer.
 - **The solution's accuracy is overwhelmingly deterministic.** 13 of 14 cases
   never reached the model. The LLM contributed labels and prose on one
   ambiguous case and could not have affected any amount or row set (§2.1).
-- **Risk of dataset overfit.** The matcher's reference normalization was written
-  against this generator's noise styles, so its near-total matching coverage is
-  partly by construction. The honest reading of F1 = 1.0 is that the
-  conventions and plumbing are right, not that the heuristics generalize.
+- **F1 = 1.0 does not prove general accuracy.** It means agent-v1 made no
+  scoring error on these specific cases. Stated explicitly:
+  **seed-42 and seed-777 share the same generator and the same case structure.**
+  The holdout establishes **robustness to value variation under that structure**
+  — new amounts, dates, references, currencies. It does **not** establish
+  robustness to unseen break structures, unseen reference-noise patterns,
+  many-to-one reconciliation (batch settlements), or real partner data. Because
+  both seeds come from one generator, and the matcher's reference normalization
+  was written against that generator's noise styles, **the holdout cannot detect
+  overfitting to the generator itself.** A stronger test needs a different
+  generator or real files; neither was run.
 - **Baseline runtime is outlier-dominated.** One case (`case_09_rounding`) took
   420.34s — 51% of total wall clock and 87% of run cost. The median baseline
   case took ~28s. Quote the median alongside the total.
@@ -368,7 +407,38 @@ Two caveats that matter more than the numbers:
   only scored FPs. The scorer behaves as specified; the metric is blind to this
   failure shape.
 
-### 6.6 Method note
+### 6.6 Rejected ablation — LLM cause classification
+
+To test whether the deterministic cause-classification layer earns its place, a
+controlled ablation replaced it with the LLM: every candidate break's
+`break_type` (and COMPOUND components) decided by the model instead of by
+arithmetic, with everything else identical — same matching, same computed
+amounts, same prompt, **same verifier still downstream**, same model, same
+seed-42 data. Full detail: **[docs/ABLATION_LLM_CAUSE.md](docs/ABLATION_LLM_CAUSE.md)**.
+
+| Metric | agent-v1 | Ablation | Delta |
+|---|---|---|---|
+| F1 | 1.0 | 0.9778 | −0.0222 |
+| Recall | 1.0 | 0.9565 | −0.0435 |
+| Cause accuracy | 1.0 | 0.8636 | **−0.1364** |
+| TP / FP / FN | 23/0/0 | 22/0/1 | −1 TP, +1 FN |
+| Verifier corrections | 0 | 4 | +4 |
+| LLM calls | 1 | 12 | ×12 |
+| Runtime | 13.9s | 129.05s | ×9.3 |
+| Cost | $0.00088047 | $0.01309202 | **×14.9** |
+
+**REJECTED.** Forcing LLM cause classification increased calls and cost while
+reducing accuracy. The model agreed with the arithmetic on 19 of 23 candidates;
+all four divergences were the same error — failing to attribute a one-cent gross
+gap to FX rounding-mode divergence on an identical foreign amount and rate,
+reproducing the baseline's failure even when handed the computed difference and
+the FX fields. On `case_12` it returned `component_causes` as prose rather than
+enum values, so the taxonomy filter emptied the set and the verifier dropped the
+break entirely — the lost TP came from a formatting habit, not faulty reasoning.
+The ablation remains available as an explicitly opt-in experiment
+(`LLM_CAUSE_ABLATION=1`) and is **not** part of the default design.
+
+### 6.7 Method note
 
 The baseline is the experimental control: one prompt, one call per case, no
 tools, no verification pass, no retries. **It was not modified after its results
@@ -422,10 +492,64 @@ tests/                 113 tests
 CHANGELOG.md           improvement log, recorded as work happens
 ```
 
-## 9. Model and tool disclosure
+## 9. Model, tool, and data disclosure
 
-- **Development:** Claude Code (Opus) under the milestone gates recorded in
+- **LLM runs (all of them):** `minimax/minimax-m2.7` via **OpenRouter**,
+  temperature 0. Used for the seed-42 baseline and agent-v1, the seed-777
+  holdout of both, and the rejected ablation. No other model was used for any
+  reported result.
+- **Development:** **Claude Code** (Opus) plus Claude.ai sessions for
+  scaffolding and implementation, under the milestone gates recorded in
   `CLAUDE.md`; every milestone boundary is a human review gate.
+- **Disclosed defect — baseline provenance / model self-report.** The baseline
+  runner builds each case's `system` block as
+  `{name, model, provider, **model_supplied_system}`, spreading the model's own
+  JSON last. The model therefore overwrote the runner's true values and
+  **misreported its own identity in all 14 seed-42 case files**, claiming 8
+  distinct model ids across 3 providers (`gpt-4o`, `gpt-4`, `o4-mini`,
+  `claude-3-5-sonnet-20241022`, `reconciliation-engine`, `reconciliation-core`,
+  `reconciliation-v1`, `recon-v1`) while actually running
+  `minimax/minimax-m2.7`. `results/baseline.json` initially reported
+  `gpt-4o` / `openai`. Fixed in the evaluator (`load_run_provenance()` reads the
+  runner-written `_meta.json`); the discarded self-report is preserved under
+  `system_self_reported` for audit. The committed baseline case files are left
+  **unaltered** — they are the frozen control's raw output and the evidence for
+  this finding. The spread order in `baseline.py` remains latent by choice; see
+  [docs/BASELINE_RUN_NOTES.md](docs/BASELINE_RUN_NOTES.md) §1. A model asked to
+  describe itself will confabulate; only runner-side metadata is evidence.
+
+### 9.1 Data and privacy
+
+- **All datasets are fully synthetic**, produced by `src/recon/generate.py`.
+- **No real customer, partner, or production data** is present anywhere in this
+  repository, and none was used at any point.
+- **Seeded and reproducible:** seed 42 (primary) and seed 777 (holdout),
+  generator v1.0. `make data` regenerates the committed seed-42 files
+  byte-for-byte (verified with `diff -r`).
+- Amounts, references, dates, currencies and merchant descriptions are drawn
+  from fixed lists and a seeded PRNG. No PII, no account numbers, no real
+  identifiers.
+- The only credential involved is an OpenRouter API key, read from `.env`, which
+  is gitignored and has never been committed (verified against full history).
+
+### 9.2 Human review position
+
+This system produces an **exception report for human sign-off**. It does not
+post adjustments, clear breaks, or approve a reconciliation period, and it is
+not designed to run unattended:
+
+- Every break carries the row IDs, the source values, the computed difference
+  and a suggested action, so an analyst can verify each finding against the
+  ledger rather than trusting the output.
+- The `AMBIGUOUS` classification exists precisely to escalate rather than guess:
+  where correspondence cannot be established from the data, the report says so
+  instead of inventing a pairing.
+- Confidence is reported per break, and the XLSX Summary sheet states plainly
+  when aggregate totals tie out while row-level breaks exist — the case most
+  likely to be waved through.
+- The intended workflow is **agent proposes, analyst disposes**. On a 14-case
+  synthetic benchmark with one model and one run, that is the only defensible
+  posture; see [§6.3](#63-scope-and-limitations).
 - **Runtime model (both arms):** `minimax/minimax-m2.7` via **OpenRouter**.
   Recorded in each run's `_meta.json` and carried into `results/*.json`.
   Ollama is supported; `MockProvider` backs the credential-free test suite.

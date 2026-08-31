@@ -3,10 +3,12 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# Generated XLSX exception reports. Reproducible at any time with `make report`
-# from the committed outputs/solution/, so not committed by default. Revisit if
-# the competition brief requires the workbooks as submitted artifacts.
-reports/
+# Generated XLSX exception reports. All 14 are reproducible at any time with
+# `make report` from the committed outputs/solution/, so they are not committed
+# wholesale. The signature adversarial case is committed as the sample
+# submission artifact (see README). Revisit if the brief requires all 14.
+reports/*
+!reports/case_13_signature_adversarial.xlsx
 
 # NOT ignored, deliberately — this is the primary experiment's evidence:
 #   outputs/baseline/   real one-prompt control run (frozen; never re-tuned)
