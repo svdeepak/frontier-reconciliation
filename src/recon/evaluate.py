@@ -161,16 +161,56 @@ def score_case(case_id: str, gt: dict, row_ids: set, output, schema_valid: bool,
     return diag
 
 
+def load_run_provenance(outputs_dir: Path) -> dict | None:
+    """Actual run identity, from the runner's own _meta.json.
+
+    Provenance belongs to the run, not to the prediction: `_meta.json` is
+    written by the runner from the live provider object, whereas a case
+    output's `system` block passes through the model's reply and can therefore
+    carry whatever identity the model invented. Across the 14 case files of the
+    real baseline run the model reported 8 distinct model ids over 3 providers
+    (gpt-4o, gpt-4, o4-mini, claude-3-5-sonnet-20241022, reconciliation-engine,
+    reconciliation-core, reconciliation-v1, recon-v1) while actually running
+    minimax/minimax-m2.7 on OpenRouter, so a case file's self-report is not a
+    trustworthy source for run identity.
+
+    Returns None when no readable _meta.json exists, leaving the caller to
+    fall back. Never affects scoring.
+    """
+    p = outputs_dir / "_meta.json"
+    if not p.exists():
+        return None
+    try:
+        meta = json.loads(p.read_text())
+    except json.JSONDecodeError:
+        return None
+    if not isinstance(meta, dict):
+        return None
+    model, provider = meta.get("model"), meta.get("provider")
+    if not model and not provider:
+        return None
+    system = {"name": meta.get("system") or "baseline-v1"}
+    if model:
+        system["model"] = model
+    if provider:
+        system["provider"] = provider
+    system["provenance"] = "run_meta"
+    return system
+
+
 def score_outputs(outputs_dir: Path, data_dir: Path, system_name: str | None = None) -> dict:
     manifest = json.loads((data_dir / "manifest.json").read_text())
     case_ids = sorted(c["case_id"] for c in manifest["cases"])
-    per_case, system = [], None
+    per_case, reported_system = [], None
     for cid in case_ids:
         gt, row_ids = load_case(data_dir, cid)
         output, ok, err = load_output(outputs_dir, cid)
-        if output and system is None:
-            system = output.get("system")
+        if output and reported_system is None:
+            reported_system = output.get("system")
         per_case.append(score_case(cid, gt, row_ids, output, ok, err))
+
+    # Run metadata wins; a model-supplied system block is only a fallback.
+    system = load_run_provenance(outputs_dir) or reported_system
 
     tp = sum(c["tp"] for c in per_case)
     fp = sum(c["fp"] for c in per_case)
@@ -186,6 +226,7 @@ def score_outputs(outputs_dir: Path, data_dir: Path, system_name: str | None = N
     return {
         "schema_version": "1.0",
         "system": system or {"name": system_name or outputs_dir.name, "model": "unknown"},
+        "system_self_reported": _self_reported_note(system, reported_system),
         "data_master_seed": manifest["master_seed"],
         "n_cases": len(case_ids),
         "totals": {
@@ -200,6 +241,20 @@ def score_outputs(outputs_dir: Path, data_dir: Path, system_name: str | None = N
         },
         "per_case": per_case,
     }
+
+
+def _self_reported_note(system: dict | None, reported: dict | None) -> dict | None:
+    """What the outputs claimed about themselves, when it differs from the run.
+
+    Kept for provenance auditing: a model that misreports its own identity is
+    a fact worth preserving, not one to silently overwrite.
+    """
+    if not reported or not system:
+        return None
+    if all(reported.get(k) == system.get(k) for k in ("model", "provider")):
+        return None
+    return {"model": reported.get("model"), "provider": reported.get("provider"),
+            "note": "self-reported by the system output; superseded by run _meta.json"}
 
 
 def compare(baseline: dict, solution: dict) -> dict:
