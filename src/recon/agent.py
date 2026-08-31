@@ -269,3 +269,151 @@ def _ambiguous_clusters(a_left: list[Row], b_left: list[Row]) -> tuple[list[Row]
         amb_a.extend(sorted(ga, key=lambda r: r.row_id))
         amb_b.extend(sorted(gb, key=lambda r: r.row_id))
     return amb_a, amb_b
+
+
+# ---------------------------------------------------------------- stage 3
+
+
+@dataclass
+class Candidate:
+    """A break under construction. Every amount here is computed by code."""
+
+    break_type: str
+    a_rows: list[Row]
+    b_rows: list[Row]
+    amount_a: Decimal | None
+    amount_b: Decimal | None
+    difference: Decimal | None
+    evidence: str
+    component_causes: list[str] = field(default_factory=list)
+    confidence: str = "HIGH"
+    needs_llm: bool = False
+    llm_note: str = ""
+
+    @property
+    def a_ids(self) -> list[str]:
+        return sorted(r.row_id for r in self.a_rows)
+
+    @property
+    def b_ids(self) -> list[str]:
+        return sorted(r.row_id for r in self.b_rows)
+
+
+def _fx_explains(a: Row, b: Row) -> bool:
+    """True iff both rows book the same foreign amount at the same rate, so a
+    gross divergence is attributable to rounding-mode choice (contract §2).
+    """
+    if None in (a.fx_rate, b.fx_rate, a.foreign_amount, b.foreign_amount):
+        return False
+    return (a.fx_rate == b.fx_rate
+            and a.foreign_amount == b.foreign_amount
+            and a.foreign_currency == b.foreign_currency)
+
+
+def classify_pair(a: Row, b: Row) -> Candidate | None:
+    """Deterministic cause analysis for one matched pair (§5: no LLM here).
+
+    Returns None when the pair reconciles exactly. Causes are established by
+    arithmetic on gross and fee; when two or more apply the result is COMPOUND
+    with the full component set.
+    """
+    gross_delta = a.gross_amount - b.gross_amount
+    fee_delta = a.fee_amount - b.fee_amount
+    causes: list[str] = []
+
+    if gross_delta != 0:
+        if _fx_explains(a, b):
+            causes.append("FX_DIFFERENCE")
+        elif abs(gross_delta) <= TOLERANCE:
+            causes.append("ROUNDING_DIFFERENCE")
+        else:
+            causes.append("AMOUNT_MISMATCH")
+    if fee_delta != 0:
+        causes.append("FEE_MISMATCH")
+
+    if not causes:
+        return None
+
+    net_delta = a.net_amount - b.net_amount
+    bits = []
+    if gross_delta != 0:
+        bits.append(f"gross A {a.gross_amount} vs B {b.gross_amount} (delta {gross_delta})")
+    if fee_delta != 0:
+        bits.append(f"fee A {a.fee_amount} vs B {b.fee_amount} (delta {fee_delta})")
+    if "FX_DIFFERENCE" in causes:
+        bits.append(f"same {a.foreign_currency} {a.foreign_amount} @ {a.fx_rate}: "
+                    f"A {a.gross_amount} vs B {b.gross_amount} — rounding-mode divergence")
+    evidence = (f"Rows {a.row_id}/{b.row_id}: " + "; ".join(bits)
+                + f". Net A {a.net_amount} vs B {b.net_amount} (delta {net_delta}).")
+
+    if len(causes) > 1:
+        return Candidate("COMPOUND", [a], [b], a.net_amount, b.net_amount, net_delta,
+                         evidence, component_causes=sorted(causes))
+    cause = causes[0]
+    if cause == "FEE_MISMATCH":
+        amt_a, amt_b, diff = a.fee_amount, b.fee_amount, fee_delta
+    else:
+        amt_a, amt_b, diff = a.gross_amount, b.gross_amount, gross_delta
+    return Candidate(cause, [a], [b], amt_a, amt_b, diff, evidence)
+
+
+def build_candidates(m: MatchResult) -> list[Candidate]:
+    """All candidate breaks, deterministically, from a match partition.
+
+    Row sets follow the contract's scoring convention (§4):
+    duplicates cite only the duplicated source's rows; missing rows cite only
+    the source that has them; ambiguous clusters are one break over all rows.
+    """
+    out: list[Candidate] = []
+
+    for a, b in m.pairs:
+        c = classify_pair(a, b)
+        if c is not None:
+            out.append(c)
+
+    for grp in m.dup_groups_b:
+        rep = grp[0]
+        out.append(Candidate(
+            "DUPLICATE", [], list(grp), None, rep.net_amount, rep.net_amount,
+            f"B rows {'/'.join(r.row_id for r in grp)} share reference "
+            f"{rep.reference!r}, currency {rep.currency}, gross {rep.gross_amount} and "
+            f"fee {rep.fee_amount}: the same economic transaction booked "
+            f"{len(grp)} times, inflating B by net {rep.net_amount}."))
+    for grp in m.dup_groups_a:
+        rep = grp[0]
+        out.append(Candidate(
+            "DUPLICATE", list(grp), [], rep.net_amount, None, rep.net_amount,
+            f"A rows {'/'.join(r.row_id for r in grp)} share reference "
+            f"{rep.reference!r}, currency {rep.currency}, gross {rep.gross_amount} and "
+            f"fee {rep.fee_amount}: the same economic transaction booked "
+            f"{len(grp)} times, inflating A by net {rep.net_amount}."))
+
+    for r in m.unmatched_a:
+        out.append(Candidate(
+            "MISSING_IN_B", [r], [], r.net_amount, None, r.net_amount,
+            f"A row {r.row_id} (ref {r.reference!r}, {r.currency} gross "
+            f"{r.gross_amount}, net {r.net_amount}, dated {r.date}) has no "
+            f"counterpart in B after reference, amount and date matching."))
+    for r in m.unmatched_b:
+        out.append(Candidate(
+            "MISSING_IN_A", [], [r], None, r.net_amount, r.net_amount,
+            f"B row {r.row_id} (ref {r.reference!r}, {r.currency} gross "
+            f"{r.gross_amount}, net {r.net_amount}, dated {r.date}) has no "
+            f"counterpart in A after reference, amount and date matching."))
+
+    if m.ambiguous_a or m.ambiguous_b:
+        aa, bb = m.ambiguous_a, m.ambiguous_b
+        out.append(Candidate(
+            "AMBIGUOUS", list(aa), list(bb),
+            sum((r.net_amount for r in aa), Decimal("0")),
+            sum((r.net_amount for r in bb), Decimal("0")),
+            Decimal("0"),
+            f"A rows {'/'.join(r.row_id for r in aa)} and B rows "
+            f"{'/'.join(r.row_id for r in bb)} share currency and amount on "
+            f"overlapping dates with unusable references "
+            f"({', '.join(sorted({r.reference for r in bb + aa if not _usable_ref(r.ref_key)}))}); "
+            f"correspondence cannot be established from the data.",
+            confidence="LOW", needs_llm=True))
+
+    out.sort(key=lambda c: (c.a_ids, c.b_ids, c.break_type))
+    return out
