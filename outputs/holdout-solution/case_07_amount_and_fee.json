@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 901.4,
+      "amount_b": 906.4,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -5.0,
+      "evidence": "Rows A1011/B5011: gross A 901.40 vs B 906.40 (delta -5.00). Net A 892.39 vs B 897.39 (delta -5.00).",
+      "suggested_action": "Confirm the correct gross with the partner and post an adjustment for the difference."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 2.23,
+      "amount_b": 1.83,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.4,
+      "evidence": "Rows A1012/B5012: fee A 2.23 vs B 1.83 (delta 0.40). Net A 220.29 vs B 220.69 (delta -0.40).",
+      "suggested_action": "Verify the contracted fee schedule and recover or accrue the fee difference."
+    }
+  ],
+  "case_id": "case_07_amount_and_fee",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

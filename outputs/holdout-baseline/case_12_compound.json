@@ -1,0 +1,73 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1340.3,
+      "amount_b": 1340.29,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "COMPOUND",
+      "component_causes": [
+        "AMOUNT_MISMATCH",
+        "FEE_MISMATCH"
+      ],
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1011 (RMT-70001, USD): gross=1340.30, fee=2.50, net=1337.80. B5011 (rmt 70001, USD): gross=1340.29, fee=3.35, net=1336.94. Gross mismatch of 0.01 (rounding difference), fee mismatch of 0.85 (2.50 vs 3.35), net difference 0.86 (1337.80 vs 1336.94). FX_RATE and foreign_amount (1.0857, EUR 1234.50) match.",
+      "suggested_action": "Investigate gross rounding (0.01) and fee discrepancy (0.85) with partner for RMT-70001; confirm correct fee should be 2.50 or 3.35."
+    }
+  ],
+  "case_id": "case_12_compound",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "payments-reconciliation-v1",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}

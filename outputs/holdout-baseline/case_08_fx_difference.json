@@ -1,0 +1,73 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1009"
+      ],
+      "amount_a": 5313.35,
+      "amount_b": 5313.34,
+      "b_row_ids": [
+        "B5009"
+      ],
+      "break_id": "P-001",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1009 (RMT-94311) gross_amount=5313.35 vs B5009 (RMT 94311) gross_amount=5313.34; net_amount_a=5260.22 vs net_amount_b=5260.21; fx_rate and foreign_amount identical at 1.1165 and 4758.93 respectively",
+      "suggested_action": "Investigate partner rounding methodology for USD gross/net; adjust to match partner if 5313.34 is correct"
+    },
+    {
+      "a_row_ids": [
+        "A1010"
+      ],
+      "amount_a": 4366.66,
+      "amount_b": 4366.65,
+      "b_row_ids": [
+        "B5010"
+      ],
+      "break_id": "P-002",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1010 (RMT-30858) gross_amount=4366.66 vs B5010 (RMT 30858) gross_amount=4366.65; net_amount_a=4322.99 vs net_amount_b=4322.98; fx_rate and foreign_amount identical at 1.0665 and 4094.38 respectively",
+      "suggested_action": "Investigate partner rounding methodology for GBP gross/net; adjust to match partner if 4366.65 is correct"
+    }
+  ],
+  "case_id": "case_08_fx_difference",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "claude-3-5-sonnet",
+    "name": "baseline-v1",
+    "provider": "anthropic"
+  }
+}

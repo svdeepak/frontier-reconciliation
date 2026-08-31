@@ -121,3 +121,84 @@ schema, evaluator-semantics or baseline change.
 `reports/`, so no real run evidence is committable yet — flagged for decision in
 `docs/SUBMISSION_CHECKLIST.md` §10, deliberately not changed unilaterally.
 **Decision:** Kept.
+
+## HELD-OUT GENERALIZATION EXPERIMENT — seed 777 (secondary; primary seed-42 result unchanged)
+
+**Purpose:** test whether agent-v1 generalizes beyond the seed-42 dataset it was
+developed against. Not an optimization pass — no implementation was changed
+before, during, or after this experiment, and no result below was used to tune
+anything.
+
+**Setup:** `data-holdout/` generated with the existing generator at seed 777
+(generator v1.0, unmodified). Same model and provider as the primary experiment
+(OpenRouter / `minimax/minimax-m2.7`), same frozen evaluator, same schemas.
+Separate output and result paths throughout; primary artifacts untouched.
+
+**Measured results (seed 777, 14 cases, 23 planted breaks):**
+
+| Metric | Holdout baseline | Holdout agent-v1 |
+|---|---|---|
+| F1 | 0.72 | **1.0** |
+| Precision | 0.6667 | 1.0 |
+| Recall | 0.7826 | 1.0 |
+| Cause accuracy | 0.7778 | 1.0 |
+| Evidence validity | 1.0 | 1.0 |
+| TP / FP / FN | 18 / 9 / 5 | 23 / 0 / 0 |
+| Predictions | 27 | 23 |
+| LLM calls | 14 | 1 |
+| Runtime | 566.97s | 12.56s |
+| Prompt / completion tokens | 17,644 / 30,970 | 693 / 618 |
+| Cost | $0.056913 | $0.001899 |
+
+**Seed-42 vs seed-777:**
+
+| | Baseline 42 | Baseline 777 | agent-v1 42 | agent-v1 777 |
+|---|---|---|---|---|
+| F1 | 0.8182 | **0.72** | 1.0 | **1.0** |
+| Precision | 0.8571 | **0.6667** | 1.0 | 1.0 |
+| Recall | 0.7826 | 0.7826 | 1.0 | 1.0 |
+| FP | 3 | **9** | 0 | 0 |
+
+**Finding 1 — agent-v1 held.** F1 1.0 on unseen values, 23/23 breaks, no false
+positives, and the same single LLM call (`case_11_ambiguous`), 0 verifier
+corrections. The deterministic stages transferred without modification.
+
+**Finding 2 — the baseline degraded.** F1 0.8182 → 0.72, entirely through
+precision (0.8571 → 0.6667): false positives tripled from 3 to 9 while TP, FN,
+recall and cause accuracy were unchanged. On holdout `case_13` it emitted **9
+predictions for 3 breaks**, six of them spurious `AMBIGUOUS` claims over cleanly
+matched pairs, plus one duplicate prediction. Same prompt, same model, same
+structure, different values — the one-prompt approach was less stable than its
+seed-42 score suggested.
+
+**Finding 3 — a metric that flatters the baseline.** On the holdout's *clean*
+`case_02`, the baseline emitted **6 breaks** using an invented break type
+`DATE_MISMATCH`, which failed schema validation. Because
+`clean_case_false_positives` counts scored FPs and an invalid output contributes
+none, that metric reads **0** for both seeds while the baseline in fact raised
+six false exceptions on a clean case. The headline number understates the real
+behaviour. `case_04` was also schema-invalid (`component_causes: null`, the same
+slip as seed-42), costing 2 TP.
+
+**Finding 4 — the holdout is narrower than "held out" suggests.** Structurally
+it is a **replica** of seed-42: identical case list, identical row counts,
+identical break-type composition, identical 23-break total, identical
+net-totals-equal pattern (5 cases). Only values vary — 97% of the 334 rows
+differ in reference and amount. But 8 rows are hardcoded in the generator, so
+`case_12_compound` and most of `case_13_signature_adversarial` are byte-identical
+across seeds, and the ground-truth breaks for `case_11`, `case_12` and `case_13`
+are identical apart from the seed field. The ambiguous-case reference literals
+(`REF ILLEGIBLE`, `REF MISSING`) are also fixed.
+
+**What this experiment does and does not establish.** It shows agent-v1 is
+robust to *value* variation — new amounts, dates, references, currencies — under
+the same structure, and that the baseline is not. It does **not** test
+generalization to new break structures, unseen reference-noise styles, different
+case shapes, many-to-one settlement batches, or real partner data. Because the
+matcher's reference normalization was written against this generator's noise
+styles, and the generator is shared by both seeds, the holdout cannot detect
+overfitting to the generator itself. A stronger test needs a different generator
+or real-world files.
+
+**Decision:** Recorded as a secondary result. No implementation change.
+The primary seed-42 experiment (commit 1fc5850) stands unmodified.

@@ -1,0 +1,91 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 346.29,
+      "b_row_ids": [
+        "B5011",
+        "B5011D"
+      ],
+      "break_id": "P-001",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 346.29,
+      "evidence": "B rows B5011/B5011D share reference 'PB/RMT-48505', currency AED, gross 349.79 and fee 3.50: the same economic transaction booked 2 times, inflating B by net 346.29.",
+      "suggested_action": "Void the duplicate booking and reverse its effect on the affected source's totals."
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 962.54,
+      "b_row_ids": [
+        "B5012",
+        "B5012D"
+      ],
+      "break_id": "P-002",
+      "break_type": "DUPLICATE",
+      "confidence": "HIGH",
+      "difference": 962.54,
+      "evidence": "B rows B5012/B5012D share reference 'TXN-48061', currency AED, gross 972.26 and fee 9.72: the same economic transaction booked 2 times, inflating B by net 962.54.",
+      "suggested_action": "Void the duplicate booking and reverse its effect on the affected source's totals."
+    }
+  ],
+  "case_id": "case_10_duplicates",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1011",
+      "b_row_id": "B5011"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

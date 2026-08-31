@@ -1,0 +1,81 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 479.05,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "MISSING_IN_A",
+      "confidence": "HIGH",
+      "difference": 479.05,
+      "evidence": "B row B5011 (ref 'TXN 59012', AED gross 483.89, net 479.05, dated 2026-08-15) has no counterpart in A after reference, amount and date matching.",
+      "suggested_action": "Investigate why the partner booked this transaction with no ledger entry; post to the ledger or raise with the partner."
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 670.13,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_A",
+      "confidence": "HIGH",
+      "difference": 670.13,
+      "evidence": "B row B5012 (ref 'pay-91400', EUR gross 676.90, net 670.13, dated 2026-08-10) has no counterpart in A after reference, amount and date matching.",
+      "suggested_action": "Investigate why the partner booked this transaction with no ledger entry; post to the ledger or raise with the partner."
+    }
+  ],
+  "case_id": "case_04_missing_in_a",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

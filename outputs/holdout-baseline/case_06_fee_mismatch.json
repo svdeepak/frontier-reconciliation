@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 0.0,
+      "amount_b": 0.0,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1011 (TXN-16679) and B5011 (PB/TXN-16679) share reference TXN-16679, gross_amount=141.34, but fee_amount differs: A1011=1.41, B5011=2.01 (difference=0.60), causing net_amount discrepancy: A1011=139.93, B5011=139.33",
+      "suggested_action": "Investigate fee applied by partner for this refund transaction; adjust if partner fee is correct"
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 0.0,
+      "amount_b": 0.0,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1012 (PAY-29949) and B5012 (PAY-29949) share reference PAY-29949, gross_amount=563.30, but fee_amount differs: A1012=5.63, B5012=6.88 (difference=1.25), causing net_amount discrepancy: A1012=557.67, B5012=556.42",
+      "suggested_action": "Investigate fee applied by partner for this card settlement; adjust if partner fee is correct"
+    }
+  ],
+  "case_id": "case_06_fee_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "unknown",
+    "name": "baseline-v1",
+    "provider": "unknown"
+  }
+}

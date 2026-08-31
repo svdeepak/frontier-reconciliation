@@ -1,0 +1,173 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1002"
+      ],
+      "amount_a": 558.14,
+      "amount_b": 558.14,
+      "b_row_ids": [
+        "B5002"
+      ],
+      "break_id": "P-001",
+      "break_type": "DATE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1002 date 2026-08-09 vs B5002 date 2026-08-10; reference TXN-76325, gross/fee/net amounts (558.14/5.58/552.56) are identical",
+      "suggested_action": "Confirm correct transaction date with partner; date may reflect processing vs booking date"
+    },
+    {
+      "a_row_ids": [
+        "A1004"
+      ],
+      "amount_a": 547.33,
+      "amount_b": 547.33,
+      "b_row_ids": [
+        "B5004"
+      ],
+      "break_id": "P-002",
+      "break_type": "DATE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1004 date 2026-08-18 vs B5004 date 2026-08-19; reference RMT-35880, gross/fee/net amounts (547.33/5.47/541.86) are identical",
+      "suggested_action": "Confirm correct transaction date with partner; date may reflect processing vs booking date"
+    },
+    {
+      "a_row_ids": [
+        "A1005"
+      ],
+      "amount_a": 958.71,
+      "amount_b": 958.71,
+      "b_row_ids": [
+        "B5005"
+      ],
+      "break_id": "P-003",
+      "break_type": "DATE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1005 date 2026-08-09 vs B5005 date 2026-08-10; reference PAY-34116, gross/fee/net amounts (958.71/9.59/949.12) are identical",
+      "suggested_action": "Confirm correct transaction date with partner; date may reflect processing vs booking date"
+    },
+    {
+      "a_row_ids": [
+        "A1006"
+      ],
+      "amount_a": 242.17,
+      "amount_b": 242.17,
+      "b_row_ids": [
+        "B5006"
+      ],
+      "break_id": "P-004",
+      "break_type": "DATE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1006 date 2026-08-16 vs B5006 date 2026-08-17; reference PAY-18763, gross/fee/net amounts (242.17/2.42/239.75) are identical",
+      "suggested_action": "Confirm correct transaction date with partner; date may reflect processing vs booking date"
+    },
+    {
+      "a_row_ids": [
+        "A1009"
+      ],
+      "amount_a": 1606.88,
+      "amount_b": 1606.88,
+      "b_row_ids": [
+        "B5009"
+      ],
+      "break_id": "P-005",
+      "break_type": "DATE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1009 date 2026-08-01 vs B5009 date 2026-08-02; reference INV-58836, gross/fee/net amounts (1606.88/16.07/1590.81) are identical",
+      "suggested_action": "Confirm correct transaction date with partner; date may reflect processing vs booking date"
+    },
+    {
+      "a_row_ids": [
+        "A1010"
+      ],
+      "amount_a": 22.46,
+      "amount_b": 22.46,
+      "b_row_ids": [
+        "B5010"
+      ],
+      "break_id": "P-006",
+      "break_type": "DATE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1010 date 2026-08-20 vs B5010 date 2026-08-21; reference INV-99253, gross/fee/net amounts (22.46/0.22/22.24) are identical",
+      "suggested_action": "Confirm correct transaction date with partner; date may reflect processing vs booking date"
+    }
+  ],
+  "case_id": "case_02_clean_messy",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1011",
+      "b_row_id": "B5011"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    },
+    {
+      "a_row_id": "A1013",
+      "b_row_id": "B5013"
+    },
+    {
+      "a_row_id": "A1014",
+      "b_row_id": "B5014"
+    },
+    {
+      "a_row_id": "A1015",
+      "b_row_id": "B5015"
+    },
+    {
+      "a_row_id": "A1016",
+      "b_row_id": "B5016"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "claude-sonnet-4-20250514",
+    "name": "baseline-v1",
+    "provider": "anthropic"
+  }
+}

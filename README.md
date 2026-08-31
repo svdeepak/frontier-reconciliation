@@ -335,7 +335,40 @@ providers (`gpt-4o`, `gpt-4`, `o4-mini`, `claude-3-5-sonnet-20241022`,
 self-report is preserved under `system_self_reported` for audit. A model asked
 to describe itself will confabulate; only runner-side metadata is evidence.
 
-### 6.5 Method note
+### 6.5 Held-out generalization check (seed 777) — secondary result
+
+A separate dataset was generated with the same unmodified generator at **seed
+777** (`data-holdout/`) and both systems re-run on it with the same model and
+provider. **This is a secondary result; the primary experiment above is
+seed-42.** Full detail: **[docs/HOLDOUT_SEED777.md](docs/HOLDOUT_SEED777.md)**.
+
+| Metric | Baseline 42 | Baseline 777 | agent-v1 42 | agent-v1 777 |
+|---|---|---|---|---|
+| F1 | 0.8182 | **0.72** | 1.0 | **1.0** |
+| Precision | 0.8571 | **0.6667** | 1.0 | 1.0 |
+| Recall | 0.7826 | 0.7826 | 1.0 | 1.0 |
+| TP / FP / FN | 18/3/5 | 18/**9**/5 | 23/0/0 | 23/0/0 |
+
+**agent-v1 held at F1 1.0 on unseen values.** The baseline dropped to 0.72 —
+purely through precision, with false positives tripling from 3 to 9 (on holdout
+`case_13` it emitted 9 predictions for 3 breaks). TP, FN, recall and cause
+accuracy were unchanged, so the one-prompt approach is less stable across value
+variation than its seed-42 score suggested.
+
+Two caveats that matter more than the numbers:
+
+- **The holdout is a structural replica, not an independent dataset.** Same case
+  list, row counts, break-type composition and 23-break total; only values vary
+  (97% of 334 rows differ in reference and amount). Both seeds share one
+  generator, so this **cannot** detect overfitting to the generator itself.
+  It tests robustness to value variation under fixed structure — nothing more.
+- **`clean_case_false_positives` reads 0 but understates the baseline.** On the
+  holdout's clean `case_02` the baseline emitted 6 breaks using an invented type
+  `DATE_MISMATCH`; that output failed schema validation, and the metric counts
+  only scored FPs. The scorer behaves as specified; the metric is blind to this
+  failure shape.
+
+### 6.6 Method note
 
 The baseline is the experimental control: one prompt, one call per case, no
 tools, no verification pass, no retries. **It was not modified after its results

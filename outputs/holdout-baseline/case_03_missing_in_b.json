@@ -1,0 +1,81 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 23.48,
+      "amount_b": 0.0,
+      "b_row_ids": [],
+      "break_id": "P-001",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 23.48,
+      "evidence": "A1011 (RMT-91768, USD Refund, gross 23.48, fee 0.23, net 23.25) present in Source A but no matching row found in Source B. Source B contains only B5001\u2013B5010, none of which correspond to RMT-91768.",
+      "suggested_action": "Locate RMT-91768 in partner statement or confirm transaction was not submitted."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 795.57,
+      "amount_b": 0.0,
+      "b_row_ids": [],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 795.57,
+      "evidence": "A1012 (TXN-14179, INR Remittance payout, gross 795.57, fee 7.96, net 787.61) present in Source A but no matching row found in Source B. Source B contains only B5001\u2013B5010, none of which correspond to TXN-14179.",
+      "suggested_action": "Locate TXN-14179 in partner statement or confirm transaction was not submitted."
+    }
+  ],
+  "case_id": "case_03_missing_in_b",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4o",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

@@ -1,0 +1,390 @@
+{
+  "cases": [
+    {
+      "case_id": "case_01_clean_small",
+      "seconds": 19.65,
+      "usage": {
+        "completion_tokens": 1199,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 879
+        },
+        "cost": 0.0036264,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0028776,
+          "upstream_inference_cost": 0.0036264,
+          "upstream_inference_prompt_cost": 0.0007488
+        },
+        "is_byok": false,
+        "prompt_tokens": 1248,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2447
+      }
+    },
+    {
+      "case_id": "case_02_clean_messy",
+      "seconds": 29.38,
+      "usage": {
+        "completion_tokens": 2603,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1220
+        },
+        "cost": 0.0072168,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0062472,
+          "upstream_inference_cost": 0.0072168,
+          "upstream_inference_prompt_cost": 0.0009696
+        },
+        "is_byok": false,
+        "prompt_tokens": 1616,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 4219
+      }
+    },
+    {
+      "case_id": "case_03_missing_in_b",
+      "seconds": 28.42,
+      "usage": {
+        "completion_tokens": 2078,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1583
+        },
+        "cost": 0.0056892,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0049872,
+          "upstream_inference_cost": 0.0056892,
+          "upstream_inference_prompt_cost": 0.000702
+        },
+        "is_byok": false,
+        "prompt_tokens": 1170,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 3248
+      }
+    },
+    {
+      "case_id": "case_04_missing_in_a",
+      "seconds": 17.54,
+      "usage": {
+        "completion_tokens": 1458,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "cost": 0.0021045,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0017496,
+          "upstream_inference_cost": 0.0021045,
+          "upstream_inference_prompt_cost": 0.0003549
+        },
+        "is_byok": false,
+        "prompt_tokens": 1183,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2641
+      }
+    },
+    {
+      "case_id": "case_05_amount_mismatch",
+      "seconds": 31.51,
+      "usage": {
+        "completion_tokens": 1722,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1235
+        },
+        "cost": 0.0024378,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0020664,
+          "upstream_inference_cost": 0.0024378,
+          "upstream_inference_prompt_cost": 0.0003714
+        },
+        "is_byok": false,
+        "prompt_tokens": 1238,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2960
+      }
+    },
+    {
+      "case_id": "case_06_fee_mismatch",
+      "seconds": 21.49,
+      "usage": {
+        "completion_tokens": 1257,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 732
+        },
+        "cost": 0.0018813,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0015084,
+          "upstream_inference_cost": 0.0018813,
+          "upstream_inference_prompt_cost": 0.0003729
+        },
+        "is_byok": false,
+        "prompt_tokens": 1243,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2500
+      }
+    },
+    {
+      "case_id": "case_07_amount_and_fee",
+      "seconds": 16.22,
+      "usage": {
+        "completion_tokens": 995,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 522
+        },
+        "cost": 0.0015684,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.001194,
+          "upstream_inference_cost": 0.0015684,
+          "upstream_inference_prompt_cost": 0.0003744
+        },
+        "is_byok": false,
+        "prompt_tokens": 1248,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2243
+      }
+    },
+    {
+      "case_id": "case_08_fx_difference",
+      "seconds": 22.39,
+      "usage": {
+        "completion_tokens": 1166,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 681
+        },
+        "cost": 0.0017709,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0013992,
+          "upstream_inference_cost": 0.0017709,
+          "upstream_inference_prompt_cost": 0.0003717
+        },
+        "is_byok": false,
+        "prompt_tokens": 1239,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2405
+      }
+    },
+    {
+      "case_id": "case_09_rounding",
+      "seconds": 41.3,
+      "usage": {
+        "completion_tokens": 2634,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 2117
+        },
+        "cost": 0.0070656,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0063216,
+          "upstream_inference_cost": 0.0070656,
+          "upstream_inference_prompt_cost": 0.000744
+        },
+        "is_byok": false,
+        "prompt_tokens": 1240,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 3874
+      }
+    },
+    {
+      "case_id": "case_10_duplicates",
+      "seconds": 96.18,
+      "usage": {
+        "completion_tokens": 4165,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 3622
+        },
+        "cost": 0.0053898,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.004998,
+          "upstream_inference_cost": 0.0053898,
+          "upstream_inference_prompt_cost": 0.0003918
+        },
+        "is_byok": false,
+        "prompt_tokens": 1306,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 5471
+      }
+    },
+    {
+      "case_id": "case_11_ambiguous",
+      "seconds": 52.42,
+      "usage": {
+        "completion_tokens": 2305,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1824
+        },
+        "cost": 0.0030984,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.002766,
+          "upstream_inference_cost": 0.0030984,
+          "upstream_inference_prompt_cost": 0.0003324
+        },
+        "is_byok": false,
+        "prompt_tokens": 1108,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 3413
+      }
+    },
+    {
+      "case_id": "case_12_compound",
+      "seconds": 24.82,
+      "usage": {
+        "completion_tokens": 1410,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 957
+        },
+        "cost": 0.0020544,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.001692,
+          "upstream_inference_cost": 0.0020544,
+          "upstream_inference_prompt_cost": 0.0003624
+        },
+        "is_byok": false,
+        "prompt_tokens": 1208,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 2618
+      }
+    },
+    {
+      "case_id": "case_13_signature_adversarial",
+      "seconds": 140.44,
+      "usage": {
+        "completion_tokens": 6074,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 4429
+        },
+        "cost": 0.0076956,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0072888,
+          "upstream_inference_cost": 0.0076956,
+          "upstream_inference_prompt_cost": 0.0004068
+        },
+        "is_byok": false,
+        "prompt_tokens": 1356,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 7430
+      }
+    },
+    {
+      "case_id": "case_14_aggregate_trap",
+      "seconds": 25.17,
+      "usage": {
+        "completion_tokens": 1904,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 1440
+        },
+        "cost": 0.0053142,
+        "cost_details": {
+          "upstream_inference_completions_cost": 0.0045696,
+          "upstream_inference_cost": 0.0053142,
+          "upstream_inference_prompt_cost": 0.0007446
+        },
+        "is_byok": false,
+        "prompt_tokens": 1241,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "total_tokens": 3145
+      }
+    }
+  ],
+  "model": "minimax/minimax-m2.7",
+  "parse_failures": [],
+  "provider": "openrouter",
+  "total_seconds": 566.97,
+  "total_tokens": {
+    "completion": 30970,
+    "prompt": 17644
+  }
+}

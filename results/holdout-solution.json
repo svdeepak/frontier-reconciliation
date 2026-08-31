@@ -1,0 +1,481 @@
+{
+  "data_master_seed": 777,
+  "n_cases": 14,
+  "per_case": [
+    {
+      "case_id": "case_01_clean_small",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 0,
+      "n_predictions": 0,
+      "predictions": [],
+      "schema_valid": true,
+      "tp": 0,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_02_clean_messy",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 0,
+      "n_predictions": 0,
+      "predictions": [],
+      "schema_valid": true,
+      "tp": 0,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_03_missing_in_b",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_04_missing_in_a",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_05_amount_mismatch",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_06_fee_mismatch",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_07_amount_and_fee",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_08_fx_difference",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1009"
+          ],
+          "b_row_ids": [
+            "B5009"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1010"
+          ],
+          "b_row_ids": [
+            "B5010"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_09_rounding",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_10_duplicates",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5011",
+            "B5011D"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012",
+            "B5012D"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_11_ambiguous",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 1,
+      "n_predictions": 1,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1009",
+            "A1010"
+          ],
+          "b_row_ids": [
+            "B5009",
+            "B5010"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 1,
+      "tp_correct_cause": 1
+    },
+    {
+      "case_id": "case_12_compound",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 1,
+      "n_predictions": 1,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 1,
+      "tp_correct_cause": 1
+    },
+    {
+      "case_id": "case_13_signature_adversarial",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 3,
+      "n_predictions": 3,
+      "predictions": [
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012",
+            "B5012D"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1013"
+          ],
+          "b_row_ids": [],
+          "break_id": "P-003",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 3,
+      "tp_correct_cause": 3
+    },
+    {
+      "case_id": "case_14_aggregate_trap",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provenance": "run_meta",
+    "provider": "openrouter"
+  },
+  "system_self_reported": null,
+  "totals": {
+    "cause_accuracy_over_tp": 1.0,
+    "clean_case_false_positives": 0,
+    "evidence_validity_rate": 1.0,
+    "f1": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "n_predictions": 23,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 23
+  }
+}

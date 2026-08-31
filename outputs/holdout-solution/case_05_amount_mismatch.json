@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 457.26,
+      "amount_b": 469.66,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -12.4,
+      "evidence": "Rows A1011/B5011: gross A 457.26 vs B 469.66 (delta -12.40). Net A 452.69 vs B 465.09 (delta -12.40).",
+      "suggested_action": "Confirm the correct gross with the partner and post an adjustment for the difference."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 540.49,
+      "amount_b": 536.74,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 3.75,
+      "evidence": "Rows A1012/B5012: gross A 540.49 vs B 536.74 (delta 3.75). Net A 535.09 vs B 531.34 (delta 3.75).",
+      "suggested_action": "Confirm the correct gross with the partner and post an adjustment for the difference."
+    }
+  ],
+  "case_id": "case_05_amount_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

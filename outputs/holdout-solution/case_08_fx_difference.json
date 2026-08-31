@@ -1,0 +1,77 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1009"
+      ],
+      "amount_a": 5313.35,
+      "amount_b": 5313.34,
+      "b_row_ids": [
+        "B5009"
+      ],
+      "break_id": "P-001",
+      "break_type": "FX_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "Rows A1009/B5009: gross A 5313.35 vs B 5313.34 (delta 0.01); same EUR 4758.93 @ 1.1165: A 5313.35 vs B 5313.34 \u2014 rounding-mode divergence. Net A 5260.22 vs B 5260.21 (delta 0.01).",
+      "suggested_action": "Align rounding convention on converted amounts with the partner; book the sub-cent difference to FX variance."
+    },
+    {
+      "a_row_ids": [
+        "A1010"
+      ],
+      "amount_a": 4366.66,
+      "amount_b": 4366.65,
+      "b_row_ids": [
+        "B5010"
+      ],
+      "break_id": "P-002",
+      "break_type": "FX_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "Rows A1010/B5010: gross A 4366.66 vs B 4366.65 (delta 0.01); same USD 4094.38 @ 1.0665: A 4366.66 vs B 4366.65 \u2014 rounding-mode divergence. Net A 4322.99 vs B 4322.98 (delta 0.01).",
+      "suggested_action": "Align rounding convention on converted amounts with the partner; book the sub-cent difference to FX variance."
+    }
+  ],
+  "case_id": "case_08_fx_difference",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

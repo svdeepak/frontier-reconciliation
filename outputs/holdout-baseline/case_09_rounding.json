@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 271.41,
+      "amount_b": 271.4,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1011 gross 271.41 (net 268.70) vs B5011 gross 271.40 (net 268.69); gross differs by 0.01, net differs by 0.01 due to rounding truncation in partner system",
+      "suggested_action": "Investigate whether 271.41 or 271.40 is the correct gross; adjust B side gross up by 0.01 or A side gross down by 0.01 to align"
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 144.64,
+      "amount_b": 144.63,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "ROUNDING_DIFFERENCE",
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1012 gross 144.64 (net 143.19) vs B5012 gross 144.63 (net 143.18); gross differs by 0.01, net differs by 0.01 due to rounding truncation in partner system",
+      "suggested_action": "Investigate whether 144.64 or 144.63 is the correct gross; adjust B side gross up by 0.01 or A side gross down by 0.01 to align"
+    }
+  ],
+  "case_id": "case_09_rounding",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "reconciliation-engine",
+    "name": "baseline-v1",
+    "provider": "internal"
+  }
+}

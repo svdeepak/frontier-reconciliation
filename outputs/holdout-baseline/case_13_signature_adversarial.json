@@ -1,0 +1,181 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1340.3,
+      "amount_b": 1340.29,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "COMPOUND",
+      "component_causes": [
+        "AMOUNT_MISMATCH",
+        "FEE_MISMATCH"
+      ],
+      "confidence": "HIGH",
+      "difference": 0.01,
+      "evidence": "A1011 (RMT-70001, gross=1340.30, fee=2.50, net=1337.80) vs B5011 (rmt 70001, gross=1340.29, fee=3.10, net=1337.19): gross differs by 0.01, fee differs by 0.60, net differs by 0.61; FX details and foreign_amount (EUR 1234.50 at 1.0857) match",
+      "suggested_action": "Investigate source of fee discrepancy; verify which fee is correct and reconcile net amount"
+    },
+    {
+      "a_row_ids": [
+        "A1013"
+      ],
+      "amount_a": 177.5,
+      "amount_b": 0.0,
+      "b_row_ids": [],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 177.5,
+      "evidence": "A1013 (PAY-70090, 2026-08-14, gross=177.50, fee=2.50, net=175.00) has no corresponding row in Source B",
+      "suggested_action": "Verify if PAY-70090 was transmitted to partner; check for processing delay or transmission failure"
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": 0.0,
+      "amount_b": 177.51,
+      "b_row_ids": [
+        "B5012D"
+      ],
+      "break_id": "P-003",
+      "break_type": "MISSING_IN_A",
+      "confidence": "HIGH",
+      "difference": 177.51,
+      "evidence": "B5012D (PB/INV-70055, 2026-08-13, gross=177.51, fee=1.90, net=175.61) has no corresponding row in Source A",
+      "suggested_action": "Verify if PB/INV-70055 is a duplicate of INV-70055 or an unrecorded inbound transaction"
+    },
+    {
+      "a_row_ids": [
+        "A1002"
+      ],
+      "amount_a": 596.02,
+      "amount_b": 596.02,
+      "b_row_ids": [
+        "B5002"
+      ],
+      "break_id": "P-004",
+      "break_type": "AMBIGUOUS",
+      "confidence": "MEDIUM",
+      "difference": 0.0,
+      "evidence": "A1002 vs B5002: identical gross (596.02), fee (5.96), net (590.06) and reference (RMT-89145) but dates differ by 1 day (2026-08-20 vs 2026-08-21); likely same transaction with processing date variance",
+      "suggested_action": "Accept as timing difference; document for audit trail"
+    },
+    {
+      "a_row_ids": [
+        "A1005"
+      ],
+      "amount_a": 516.75,
+      "amount_b": 516.75,
+      "b_row_ids": [
+        "B5005"
+      ],
+      "break_id": "P-005",
+      "break_type": "AMBIGUOUS",
+      "confidence": "MEDIUM",
+      "difference": 0.0,
+      "evidence": "A1005 vs B5005: identical gross (516.75), fee (5.17), net (511.58) and reference (TXN-43660, case-insensitive) but dates differ by 1 day (2026-08-09 vs 2026-08-10); likely same transaction with processing date variance",
+      "suggested_action": "Accept as timing difference; document for audit trail"
+    },
+    {
+      "a_row_ids": [
+        "A1006"
+      ],
+      "amount_a": 917.38,
+      "amount_b": 917.38,
+      "b_row_ids": [
+        "B5006"
+      ],
+      "break_id": "P-006",
+      "break_type": "AMBIGUOUS",
+      "confidence": "MEDIUM",
+      "difference": 0.0,
+      "evidence": "A1006 vs B5006: identical gross (917.38), fee (9.17), net (908.21) and reference (INV-53424) but dates differ by 1 day (2026-08-14 vs 2026-08-15); likely same transaction with processing date variance",
+      "suggested_action": "Accept as timing difference; document for audit trail"
+    },
+    {
+      "a_row_ids": [
+        "A1007"
+      ],
+      "amount_a": 913.21,
+      "amount_b": 913.21,
+      "b_row_ids": [
+        "B5007"
+      ],
+      "break_id": "P-007",
+      "break_type": "AMBIGUOUS",
+      "confidence": "MEDIUM",
+      "difference": 0.0,
+      "evidence": "A1007 vs B5007: identical gross (913.21), fee (9.13), net (904.08) and reference (PAY-30815, case-insensitive) but dates differ by 1 day (2026-08-11 vs 2026-08-12); likely same transaction with processing date variance",
+      "suggested_action": "Accept as timing difference; document for audit trail"
+    },
+    {
+      "a_row_ids": [
+        "A1009"
+      ],
+      "amount_a": 194.19,
+      "amount_b": 194.19,
+      "b_row_ids": [
+        "B5009"
+      ],
+      "break_id": "P-008",
+      "break_type": "AMBIGUOUS",
+      "confidence": "MEDIUM",
+      "difference": 0.0,
+      "evidence": "A1009 vs B5009: identical gross (194.19), fee (1.94), net (192.25) and reference (PAY-68817) but dates differ by 1 day (2026-08-10 vs 2026-08-11); likely same transaction with processing date variance",
+      "suggested_action": "Accept as timing difference; document for audit trail"
+    },
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1340.3,
+      "amount_b": 1340.29,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-009",
+      "break_type": "AMBIGUOUS",
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1011 vs B5011 (same pair as P-001): amounts differ (gross diff=0.01, fee diff=0.60) AND dates differ by 1 day (2026-08-10 vs 2026-08-11); compound date and amount discrepancy warrants manual review",
+      "suggested_action": "Prioritize investigation due to multiple discrepancy types"
+    }
+  ],
+  "case_id": "case_13_signature_adversarial",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    },
+    {
+      "a_row_id": "A1012",
+      "b_row_id": "B5012"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "claude-sonnet-4-20250514",
+    "name": "baseline-v1",
+    "provider": "anthropic"
+  }
+}

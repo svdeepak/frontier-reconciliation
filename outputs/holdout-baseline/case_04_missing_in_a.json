@@ -1,0 +1,83 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 483.89,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "MISSING_IN_A",
+      "component_causes": null,
+      "confidence": "HIGH",
+      "difference": null,
+      "evidence": "B5011 (TXN 59012, REFUND, AED, gross 483.89, fee 4.84, net 479.05) has no corresponding entry in Source A.",
+      "suggested_action": "Investigate TXN 59012 in partner system; add to internal ledger if legitimate or flag as unaccounted partner transaction."
+    },
+    {
+      "a_row_ids": [],
+      "amount_a": null,
+      "amount_b": 676.9,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_A",
+      "component_causes": null,
+      "confidence": "HIGH",
+      "difference": null,
+      "evidence": "B5012 (pay-91400, CARD STL, EUR, gross 676.90, fee 6.77, net 670.13) has no corresponding entry in Source A.",
+      "suggested_action": "Investigate pay-91400 in partner system; add to internal ledger if legitimate or flag as unaccounted partner transaction."
+    }
+  ],
+  "case_id": "case_04_missing_in_a",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "unknown",
+    "name": "baseline-v1",
+    "provider": "unknown"
+  }
+}

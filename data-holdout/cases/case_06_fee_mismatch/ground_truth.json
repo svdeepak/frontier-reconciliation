@@ -1,0 +1,74 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "GT-001",
+      "break_type": "FEE_MISMATCH",
+      "expected_difference": 0.6,
+      "notes": "Fee differs by 0.60: A 1.41 vs B 2.01."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "GT-002",
+      "break_type": "FEE_MISMATCH",
+      "expected_difference": 1.25,
+      "notes": "Fee differs by 1.25: A 5.63 vs B 6.88."
+    }
+  ],
+  "case_id": "case_06_fee_mismatch",
+  "description": "Two fee discrepancies.",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "seed": 777006
+}

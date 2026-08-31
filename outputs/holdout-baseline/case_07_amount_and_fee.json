@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 901.4,
+      "amount_b": 906.4,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 5.0,
+      "evidence": "A1011 gross=901.40 vs B5011 gross=906.40; difference=5.00. Fee amounts match at 9.01.",
+      "suggested_action": "Investigate source of 5.00 gross discrepancy on RMT-30984. Could be added bonus, adjustment, or data entry error."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 2.23,
+      "amount_b": 1.83,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.4,
+      "evidence": "A1012 fee=2.23 vs B5012 fee=1.83; difference=0.40. Gross amounts match at 222.52. Net amounts differ: A1012=220.29, B5012=220.69.",
+      "suggested_action": "Confirm correct fee for RMT-13738. Verify if 0.40 difference is due to fee waiver, adjustment, or incorrect recording."
+    }
+  ],
+  "case_id": "case_07_amount_and_fee",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4o",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

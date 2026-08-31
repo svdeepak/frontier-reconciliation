@@ -1,0 +1,666 @@
+{
+  "data_master_seed": 777,
+  "n_cases": 14,
+  "per_case": [
+    {
+      "case_id": "case_01_clean_small",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 0,
+      "n_predictions": 0,
+      "predictions": [],
+      "schema_valid": true,
+      "tp": 0,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_02_clean_messy",
+      "cause_errors": [],
+      "error": "schema violation: 'DATE_MISMATCH' is not one of ['MISSING_IN_A', 'MISSING_IN_B', 'AMOUNT_MISMATCH', 'FEE_MISMATCH', 'FX_DIFFERENCE', 'ROUNDING_DIFFERENCE', 'DUPLICATE', 'AMBIGUOUS', 'COMPOUND']",
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 0,
+      "n_predictions": 0,
+      "predictions": [],
+      "schema_valid": false,
+      "tp": 0,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_03_missing_in_b",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_04_missing_in_a",
+      "cause_errors": [],
+      "error": "schema violation: None is not of type 'array'",
+      "false_positives": [],
+      "fn": 2,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [
+        "GT-001",
+        "GT-002"
+      ],
+      "n_gt_breaks": 2,
+      "n_predictions": 0,
+      "predictions": [],
+      "schema_valid": false,
+      "tp": 0,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_05_amount_mismatch",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_06_fee_mismatch",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_07_amount_and_fee",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_08_fx_difference",
+      "cause_errors": [
+        {
+          "break_id": "P-001",
+          "expected": "FX_DIFFERENCE",
+          "expected_components": [],
+          "gt_break_id": "GT-001",
+          "predicted": "ROUNDING_DIFFERENCE",
+          "predicted_components": []
+        },
+        {
+          "break_id": "P-002",
+          "expected": "FX_DIFFERENCE",
+          "expected_components": [],
+          "gt_break_id": "GT-002",
+          "predicted": "ROUNDING_DIFFERENCE",
+          "predicted_components": []
+        }
+      ],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1009"
+          ],
+          "b_row_ids": [
+            "B5009"
+          ],
+          "break_id": "P-001",
+          "category": "TP_WRONG_CAUSE"
+        },
+        {
+          "a_row_ids": [
+            "A1010"
+          ],
+          "b_row_ids": [
+            "B5010"
+          ],
+          "break_id": "P-002",
+          "category": "TP_WRONG_CAUSE"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_09_rounding",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    },
+    {
+      "case_id": "case_10_duplicates",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5011D"
+          ],
+          "break_id": "P-001",
+          "category": "FP_PARTIAL_OVERLAP"
+        },
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012D"
+          ],
+          "break_id": "P-002",
+          "category": "FP_PARTIAL_OVERLAP"
+        }
+      ],
+      "fn": 2,
+      "fp": 2,
+      "invalid_evidence": [],
+      "missed_break_ids": [
+        "GT-001",
+        "GT-002"
+      ],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5011D"
+          ],
+          "break_id": "P-001",
+          "category": "FP_PARTIAL_OVERLAP"
+        },
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012D"
+          ],
+          "break_id": "P-002",
+          "category": "FP_PARTIAL_OVERLAP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 0,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_11_ambiguous",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 1,
+      "n_predictions": 1,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1009",
+            "A1010"
+          ],
+          "b_row_ids": [
+            "B5009",
+            "B5010"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 1,
+      "tp_correct_cause": 1
+    },
+    {
+      "case_id": "case_12_compound",
+      "cause_errors": [
+        {
+          "break_id": "P-001",
+          "expected": "COMPOUND",
+          "expected_components": [
+            "FEE_MISMATCH",
+            "FX_DIFFERENCE"
+          ],
+          "gt_break_id": "GT-001",
+          "predicted": "COMPOUND",
+          "predicted_components": [
+            "AMOUNT_MISMATCH",
+            "FEE_MISMATCH"
+          ]
+        }
+      ],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 1,
+      "n_predictions": 1,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP_WRONG_CAUSE"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 1,
+      "tp_correct_cause": 0
+    },
+    {
+      "case_id": "case_13_signature_adversarial",
+      "cause_errors": [
+        {
+          "break_id": "P-001",
+          "expected": "COMPOUND",
+          "expected_components": [
+            "FEE_MISMATCH",
+            "FX_DIFFERENCE"
+          ],
+          "gt_break_id": "GT-001",
+          "predicted": "COMPOUND",
+          "predicted_components": [
+            "AMOUNT_MISMATCH",
+            "FEE_MISMATCH"
+          ]
+        }
+      ],
+      "error": null,
+      "false_positives": [
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012D"
+          ],
+          "break_id": "P-003",
+          "category": "FP_PARTIAL_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1002"
+          ],
+          "b_row_ids": [
+            "B5002"
+          ],
+          "break_id": "P-004",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1005"
+          ],
+          "b_row_ids": [
+            "B5005"
+          ],
+          "break_id": "P-005",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1006"
+          ],
+          "b_row_ids": [
+            "B5006"
+          ],
+          "break_id": "P-006",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1007"
+          ],
+          "b_row_ids": [
+            "B5007"
+          ],
+          "break_id": "P-007",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1009"
+          ],
+          "b_row_ids": [
+            "B5009"
+          ],
+          "break_id": "P-008",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-009",
+          "category": "FP_DUPLICATE_PREDICTION"
+        }
+      ],
+      "fn": 1,
+      "fp": 7,
+      "invalid_evidence": [],
+      "missed_break_ids": [
+        "GT-002"
+      ],
+      "n_gt_breaks": 3,
+      "n_predictions": 9,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP_WRONG_CAUSE"
+        },
+        {
+          "a_row_ids": [
+            "A1013"
+          ],
+          "b_row_ids": [],
+          "break_id": "P-002",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [],
+          "b_row_ids": [
+            "B5012D"
+          ],
+          "break_id": "P-003",
+          "category": "FP_PARTIAL_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1002"
+          ],
+          "b_row_ids": [
+            "B5002"
+          ],
+          "break_id": "P-004",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1005"
+          ],
+          "b_row_ids": [
+            "B5005"
+          ],
+          "break_id": "P-005",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1006"
+          ],
+          "b_row_ids": [
+            "B5006"
+          ],
+          "break_id": "P-006",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1007"
+          ],
+          "b_row_ids": [
+            "B5007"
+          ],
+          "break_id": "P-007",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1009"
+          ],
+          "b_row_ids": [
+            "B5009"
+          ],
+          "break_id": "P-008",
+          "category": "FP_NO_OVERLAP"
+        },
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-009",
+          "category": "FP_DUPLICATE_PREDICTION"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 1
+    },
+    {
+      "case_id": "case_14_aggregate_trap",
+      "cause_errors": [],
+      "error": null,
+      "false_positives": [],
+      "fn": 0,
+      "fp": 0,
+      "invalid_evidence": [],
+      "missed_break_ids": [],
+      "n_gt_breaks": 2,
+      "n_predictions": 2,
+      "predictions": [
+        {
+          "a_row_ids": [
+            "A1011"
+          ],
+          "b_row_ids": [
+            "B5011"
+          ],
+          "break_id": "P-001",
+          "category": "TP"
+        },
+        {
+          "a_row_ids": [
+            "A1012"
+          ],
+          "b_row_ids": [
+            "B5012"
+          ],
+          "break_id": "P-002",
+          "category": "TP"
+        }
+      ],
+      "schema_valid": true,
+      "tp": 2,
+      "tp_correct_cause": 2
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "baseline-v1",
+    "provenance": "run_meta",
+    "provider": "openrouter"
+  },
+  "system_self_reported": {
+    "model": "gemini-2.5-flash",
+    "note": "self-reported by the system output; superseded by run _meta.json",
+    "provider": "google"
+  },
+  "totals": {
+    "cause_accuracy_over_tp": 0.7778,
+    "clean_case_false_positives": 0,
+    "evidence_validity_rate": 1.0,
+    "f1": 0.72,
+    "fn": 5,
+    "fp": 9,
+    "n_predictions": 27,
+    "precision": 0.6667,
+    "recall": 0.7826,
+    "tp": 18
+  }
+}

@@ -1,0 +1,11 @@
+row_id,date,reference,description,currency,fx_rate,foreign_currency,foreign_amount,gross_amount,fee_amount,net_amount
+A1001,2026-08-04,PAY-69079,Card settlement,EUR,,,,25.77,0.26,25.51
+A1002,2026-08-19,TXN-26926,Remittance payout,USD,,,,747.78,7.48,740.30
+A1003,2026-08-17,TXN-70183,Payout batch item,GBP,,,,130.91,1.31,129.60
+A1004,2026-08-13,PAY-25049,Refund,INR,,,,198.10,1.98,196.12
+A1005,2026-08-16,RMT-51487,Remittance payout,USD,,,,967.59,9.68,957.91
+A1006,2026-08-12,INV-77872,Card settlement,USD,,,,453.30,4.53,448.77
+A1007,2026-08-14,TXN-99849,Refund,EUR,,,,839.74,8.40,831.34
+A1008,2026-08-07,INV-19047,Card settlement,AED,,,,368.48,3.68,364.80
+A1009,2026-08-05,PAY-64189,Refund,INR,,,,431.44,4.31,427.13
+A1010,2026-08-05,PAY-64189X,Refund,INR,,,,431.44,4.31,427.13

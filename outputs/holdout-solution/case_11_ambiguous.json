@@ -1,0 +1,63 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1009",
+        "A1010"
+      ],
+      "amount_a": 854.26,
+      "amount_b": 854.26,
+      "b_row_ids": [
+        "B5009",
+        "B5010"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMBIGUOUS",
+      "confidence": "LOW",
+      "difference": 0.0,
+      "evidence": "A rows A1009/A1010 and B rows B5009/B5010 share currency and amount on overlapping dates with unusable references (REF ILLEGIBLE, REF MISSING); correspondence cannot be established from the data. Analyst interpretation: Two identical-value INR transactions on each side cannot be matched due to unusable B-side references (ILLEGIBLE, MISSING) and potentially duplicated A-side references (PAY-64189 vs PAY-64189X), making correspondence indeterminate.",
+      "suggested_action": "Retrieve bank remittance advice or original payment instructions for B5009/B5010 and compare settlement timing, customer details, or bank narration to establish true pairing with A1009/A1010."
+    }
+  ],
+  "case_id": "case_11_ambiguous",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

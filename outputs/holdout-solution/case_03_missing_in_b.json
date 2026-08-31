@@ -1,0 +1,81 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 23.25,
+      "amount_b": null,
+      "b_row_ids": [],
+      "break_id": "P-001",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 23.25,
+      "evidence": "A row A1011 (ref 'RMT-91768', USD gross 23.48, net 23.25, dated 2026-08-04) has no counterpart in B after reference, amount and date matching.",
+      "suggested_action": "Chase the partner for the missing settlement line; withhold reconciliation sign-off until it appears or is written off."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 787.61,
+      "amount_b": null,
+      "b_row_ids": [],
+      "break_id": "P-002",
+      "break_type": "MISSING_IN_B",
+      "confidence": "HIGH",
+      "difference": 787.61,
+      "evidence": "A row A1012 (ref 'TXN-14179', INR gross 795.57, net 787.61, dated 2026-08-10) has no counterpart in B after reference, amount and date matching.",
+      "suggested_action": "Chase the partner for the missing settlement line; withhold reconciliation sign-off until it appears or is written off."
+    }
+  ],
+  "case_id": "case_03_missing_in_b",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}

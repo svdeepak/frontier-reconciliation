@@ -1,0 +1,64 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1009",
+        "A1010"
+      ],
+      "amount_a": 431.44,
+      "amount_b": 431.44,
+      "b_row_ids": [
+        "B5009",
+        "B5010"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMBIGUOUS",
+      "component_causes": [],
+      "confidence": "HIGH",
+      "difference": 0.0,
+      "evidence": "A1009 (PAY-64189, 2026-08-05) and A1010 (PAY-64189X, 2026-08-05) are exact duplicates (gross 431.44, fee 4.31, net 427.13, INR). B5009 (REF ILLEGIBLE, 2026-08-06) and B5010 (REF MISSING, 2026-08-06) are exact duplicates (gross 431.44, fee 4.31, net 427.13, INR). Since both A records are identical and both B records are identical, the 4 records form two 2-to-2 pairs but cannot be deterministically matched without additional identifying information. A1009 could match B5009 or B5010; same for A1010.",
+      "suggested_action": "Request source system to provide additional identifying transaction metadata (e.g., internal transaction IDs, timestamps with higher precision, or bank reference numbers) to disambiguate the four records and determine correct pairing. Consider investigating whether A1009 and A1010 represent a genuine duplicate entry in the internal ledger."
+    }
+  ],
+  "case_id": "case_11_ambiguous",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "gpt-4o",
+    "name": "baseline-v1",
+    "provider": "openai"
+  }
+}

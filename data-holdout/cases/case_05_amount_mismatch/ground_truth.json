@@ -1,0 +1,74 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "GT-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "expected_difference": 12.4,
+      "notes": "Gross differs by 12.40: A 457.26 vs B 469.66."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "GT-002",
+      "break_type": "AMOUNT_MISMATCH",
+      "expected_difference": -3.75,
+      "notes": "Gross differs by -3.75: A 540.49 vs B 536.74."
+    }
+  ],
+  "case_id": "case_05_amount_mismatch",
+  "description": "Two amount discrepancies beyond tolerance.",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "seed": 777005
+}

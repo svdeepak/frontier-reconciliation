@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 775.49,
+      "amount_b": 776.24,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.75,
+      "evidence": "Gross mismatch on reference TXN-97230: Source A gross=775.49 (net=767.74), Source B gross=776.24 (net=768.49). Fee matches at 7.75 in both.",
+      "suggested_action": "Investigate source of 0.75 discrepancy on TXN-97230; determine correct gross amount."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 168.47,
+      "amount_b": 167.72,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "AMOUNT_MISMATCH",
+      "confidence": "HIGH",
+      "difference": 0.75,
+      "evidence": "Gross mismatch on reference TXN-86191: Source A gross=168.47 (net=166.79), Source B gross=167.72 (net=166.04). Fee matches at 1.68 in both.",
+      "suggested_action": "Investigate source of 0.75 discrepancy on TXN-86191; determine correct gross amount."
+    }
+  ],
+  "case_id": "case_14_aggregate_trap",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "unknown",
+    "name": "baseline-v1",
+    "provider": "unknown"
+  }
+}

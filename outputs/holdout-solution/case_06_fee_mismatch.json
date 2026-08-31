@@ -1,0 +1,85 @@
+{
+  "breaks": [
+    {
+      "a_row_ids": [
+        "A1011"
+      ],
+      "amount_a": 1.41,
+      "amount_b": 2.01,
+      "b_row_ids": [
+        "B5011"
+      ],
+      "break_id": "P-001",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -0.6,
+      "evidence": "Rows A1011/B5011: fee A 1.41 vs B 2.01 (delta -0.60). Net A 139.93 vs B 139.33 (delta 0.60).",
+      "suggested_action": "Verify the contracted fee schedule and recover or accrue the fee difference."
+    },
+    {
+      "a_row_ids": [
+        "A1012"
+      ],
+      "amount_a": 5.63,
+      "amount_b": 6.88,
+      "b_row_ids": [
+        "B5012"
+      ],
+      "break_id": "P-002",
+      "break_type": "FEE_MISMATCH",
+      "confidence": "HIGH",
+      "difference": -1.25,
+      "evidence": "Rows A1012/B5012: fee A 5.63 vs B 6.88 (delta -1.25). Net A 557.67 vs B 556.42 (delta 1.25).",
+      "suggested_action": "Verify the contracted fee schedule and recover or accrue the fee difference."
+    }
+  ],
+  "case_id": "case_06_fee_mismatch",
+  "matches": [
+    {
+      "a_row_id": "A1001",
+      "b_row_id": "B5001"
+    },
+    {
+      "a_row_id": "A1002",
+      "b_row_id": "B5002"
+    },
+    {
+      "a_row_id": "A1003",
+      "b_row_id": "B5003"
+    },
+    {
+      "a_row_id": "A1004",
+      "b_row_id": "B5004"
+    },
+    {
+      "a_row_id": "A1005",
+      "b_row_id": "B5005"
+    },
+    {
+      "a_row_id": "A1006",
+      "b_row_id": "B5006"
+    },
+    {
+      "a_row_id": "A1007",
+      "b_row_id": "B5007"
+    },
+    {
+      "a_row_id": "A1008",
+      "b_row_id": "B5008"
+    },
+    {
+      "a_row_id": "A1009",
+      "b_row_id": "B5009"
+    },
+    {
+      "a_row_id": "A1010",
+      "b_row_id": "B5010"
+    }
+  ],
+  "schema_version": "1.0",
+  "system": {
+    "model": "minimax/minimax-m2.7",
+    "name": "agent-v1",
+    "provider": "openrouter"
+  }
+}
